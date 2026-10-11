@@ -8,50 +8,54 @@
 <link rel="icon" href="assets/figures/emblem-teal.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=Gloock&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=Gloock&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<!-- shared pictogram shapes -->
-<svg class="sprite" aria-hidden="true" focusable="false">
-  <symbol id="p-a" viewBox="0 0 20 44"><circle cx="10" cy="6" r="5.4"/><path d="M2.5 13.5h15V30h-1.6v14h-4.6V30H8.7v14H4.1V30H2.5z"/></symbol>
-  <symbol id="p-b" viewBox="0 0 20 44"><circle cx="10" cy="6" r="5.4"/><path d="M5.6 13.5h8.8L19 32h-4.6v12h-2.6V32H8.2v12H5.6V32H1z"/></symbol>
-  <symbol id="bldg" viewBox="0 0 44 36"><path d="M7 0h4v5h9V0h4v5h9V0h4v5h5v31H2V5h5z"/></symbol>
-  <symbol id="bldg-w" viewBox="0 0 44 36"><path fill-rule="evenodd" d="M7 0h4v5h9V0h4v5h9V0h4v5h5v31H2V5h5zM7 11v7h5v-7zM15 11v7h5v-7zM24 11v7h5v-7zM32 11v7h5v-7zM7 22v7h5v-7zM32 22v7h5v-7zM15 22v7h4v-7zM25 22v7h4v-7zM20.5 25v11h3V25z"/></symbol>
-  <symbol id="house" viewBox="0 0 20 30"><path d="M10 0l10 9v21H0V9z"/></symbol>
-</svg>
-
 <!-- persistent rail -->
 <aside class="rail" data-theme="dark">
-  <a class="rail__title" href="#top"><span id="railTitle">Concord</span></a>
+  <a class="rail__title" href="#top"><span id="railTitle">Concord School</span></a>
   <div class="rail__progress" aria-hidden="true"><i id="railBar"></i></div>
   <button class="rail__menu" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Open contents">
     <span></span><span></span><span></span>
   </button>
-  <a class="rail__foot" href="#sources"><span>Sources</span></a>
+  <button class="rail__next" id="railNext" aria-label="Next section"><svg viewBox="0 0 14 30" aria-hidden="true"><path d="M7 0v28M1 22l6 6 6-6"/></svg></button>
 </aside>
 
-<!-- full-screen contents -->
+<!-- contents: a plain list, set like the contents strip on the cover -->
 <nav class="menu" id="menu" aria-label="Contents" aria-hidden="true">
-  <a class="tile t-cover" href="#top" style="--c:#0f1719;--k:#c9a063"><span class="tile__n">Cover</span><span class="tile__t">Concord</span><i class="fig fig--emblem"></i></a>
-  <a class="tile t-ch1" href="#ch1" style="--c:#7a99ba;--k:#0f1719"><span class="tile__n">01</span><span class="tile__t">Below the hill</span><i class="fig fig--river"></i></a>
-  <a class="tile t-ch2" href="#ch2" style="--c:#c17f65;--k:#0f1719"><span class="tile__n">02</span><span class="tile__t">A model school</span><svg class="tile__svg" viewBox="0 0 44 36"><use href="#bldg-w"/></svg></a>
-  <a class="tile t-fig" href="#figures" style="--c:#c9a063;--k:#0f1719"><span class="tile__n">In numbers</span><span class="tile__t">Concord in figures</span><span class="tile__picto"><svg viewBox="0 0 20 44"><use href="#p-a"/></svg><svg viewBox="0 0 20 44"><use href="#p-b"/></svg><svg viewBox="0 0 20 44"><use href="#p-a"/></svg></span></a>
-  <a class="tile t-ch3" href="#ch3" style="--c:#356870;--k:#efeae0"><span class="tile__n">03</span><span class="tile__t">On the front steps</span><i class="fig fig--bird"></i></a>
-  <a class="tile t-ch4" href="#ch4" style="--c:#25402f;--k:#efeae0"><span class="tile__n">04</span><span class="tile__t">The lunchroom and the blackboard</span><i class="fig fig--creature"></i></a>
-  <a class="tile t-ch5" href="#ch5" style="--c:#efeae0;--k:#234955"><span class="tile__n">05</span><span class="tile__t">Repair, not replacement</span><i class="fig fig--book"></i></a>
-  <a class="tile t-ch6" href="#ch6" style="--c:#234955;--k:#efeae0"><span class="tile__n">06</span><span class="tile__t">Two languages, one hill</span><i class="fig fig--branch"></i></a>
-  <a class="tile t-chr" href="#chronology" style="--c:#8f4a40;--k:#efeae0"><span class="tile__n">1889 to today</span><span class="tile__t">A chronology</span><span class="tile__big">1914</span></a>
+  <div class="menu__in">
+    <div class="menu__side">
+      <p class="menu__mast">Contents</p>
+      <a class="menu__word" href="#top">CONCORD</a>
+      <p class="menu__tag">A history of Concord School, 1914&nbsp;to&nbsp;today</p>
+      <p class="menu__foot"><a href="#top">Cover</a><a href="#chronology">A chronology</a><a href="#sources">Sources</a></p>
+    </div>
+    <ol class="menu__list">
+      <li><a class="menu__h" href="#ch1"><b>1</b>Below the hill</a>
+        <ul><li><a href="#ch1">South Park, 1850s to 1914</a></li><li><a href="#ch1-move">The move of 1914</a></li></ul></li>
+      <li><a class="menu__h" href="#ch2"><b>2</b>A model school</a>
+        <ul><li><a href="#ch2">Edgar Blair, architect</a></li><li><a href="#facade">Reading the facade</a></li><li><a href="#figures">A century on one hill</a></li></ul></li>
+      <li><a class="menu__h" href="#ch3"><b>3</b>On the front steps</a>
+        <ul><li><a href="#portraits">Class portraits</a></li><li><a href="#color">The same stair, in color</a></li></ul></li>
+      <li><a class="menu__h" href="#ch4"><b>4</b>The lunchroom and the blackboard</a>
+        <ul><li><a href="#ch4">The lunchroom</a></li><li><a href="#blackboard">The 1938 blackboard</a></li><li><a href="#aerial">From the air, 1965</a></li></ul></li>
+      <li><a class="menu__h" href="#ch5"><b>5</b>Repair, not replacement</a>
+        <ul><li><a href="#pan">The 1999 drawings</a></li><li><a href="#keep">Marked for retention</a></li></ul></li>
+      <li><a class="menu__h" href="#ch6"><b>6</b>Five figures</a>
+        <ul><li><a href="#emblem">The emblem</a></li><li><a href="#pledge">The school pledge</a></li></ul></li>
+    </ol>
+  </div>
 </nav>
 
 <main>
 
 <!-- ============ COVER ============ -->
-<header class="hero plane dark pin" id="top" data-theme="dark" data-title="Concord">
+<header class="hero plane dark pin" id="top" data-theme="dark" data-title="Concord School">
   <div class="hero__stick pin__stick">
-    <p class="hero__mast"><span>Est. 25 January 1914</span><i>•</i><span>723 S Concord Street</span><i>•</i><span>South Park, Seattle</span></p>
+    <p class="hero__mast"><span>Est. January 25, 1914</span><i>•</i><span>723 S Concord Street</span><i>•</i><span>South Park, Seattle</span></p>
     <h1 class="hero__word" id="heroWord">CONCORD</h1>
 
     <div class="hero__side" id="heroSide">
@@ -61,14 +65,14 @@
         <li><a class="hero__toc-h" href="#ch1"><b>1</b>The hill</a>
           <ul><li><a href="#ch1">South Park School</a></li><li><a href="#ch1-move">The move of 1914</a></li><li><a href="#ch1">A town joins Seattle</a></li><li><a href="#ch1-move">The first recess</a></li></ul></li>
         <li><a class="hero__toc-h" href="#ch2"><b>2</b>The building</a>
-          <ul><li><a href="#ch2">Edgar Blair, architect</a></li><li><a href="#facade">Reading the façade</a></li><li><a href="#figures">Concord in figures</a></li><li><a href="#ch5">The 1999 drawings</a></li></ul></li>
+          <ul><li><a href="#ch2">Edgar Blair, architect</a></li><li><a href="#facade">Reading the facade</a></li><li><a href="#figures">Concord in figures</a></li><li><a href="#ch5">The 1999 drawings</a></li></ul></li>
         <li><a class="hero__toc-h" href="#ch3"><b>3</b>The people</a>
-          <ul><li><a href="#ch3">Class portraits</a></li><li><a href="#ch4">The lunchroom</a></li><li><a href="#blackboard">The 1938 blackboard</a></li><li><a href="#ch6">Two languages</a></li></ul></li>
+          <ul><li><a href="#ch3">Class portraits</a></li><li><a href="#ch4">The lunchroom</a></li><li><a href="#blackboard">The 1938 blackboard</a></li><li><a href="#languages">Two languages</a></li></ul></li>
       </ol>
     </div>
 
     <div class="hero__frame" id="heroFrame">
-      <video id="heroVideo" src="assets/video/hero.mp4" poster="assets/video/hero-poster.jpg" autoplay muted playsinline preload="auto" aria-label="Animated illustration of Concord School: children play in the yard, a school bus arrives and the pupils walk in."></video>
+      <video id="heroVideo" src="assets/video/hero.mp4" poster="assets/video/hero-poster.jpg" autoplay muted playsinline preload="auto" aria-label="Animated illustration of Concord School: children play in the yard, a school bus arrives and the students walk in."></video>
       <button class="hero__pause" id="heroPause" aria-label="Pause animation" aria-pressed="false"><i></i></button>
     </div>
     <p class="hero__cue" aria-hidden="true"><span>Scroll</span></p>
@@ -90,23 +94,23 @@
 
   <div class="grid intro__body">
     <div class="prose prose--lede" data-reveal>
-      <p>In the 1920s Concord School fielded a baseball team. Its players wore the school’s name across their jerseys and were photographed on the grounds in front of the main entrance, beneath the words <em>Concord School</em> carved in stone. The building behind them was then barely ten years old: three storeys of red and buff brick on a ridge above the Duwamish River, built by the Seattle School District in 1913 and opened in January 1914.</p>
+      <p>Concord School stands on a ridge above the Duwamish River in South Park, at 723 South Concord Street. Designed by district architect Edgar Blair and opened in January 1914, its three stories of red and buff brick have served the neighborhood’s children for more than a century.</p>
     </div>
     <div class="prose" data-reveal style="--d:.1s">
-      <p>A century later the building still stands and still serves as an elementary school. In that time South Park has changed a great deal. The river was straightened into a shipping channel, farmland gave way to industry, a freeway was built along the hill and, from the 1970s, the neighbourhood became home to a large Latino community.</p>
-      <p>This account follows the school from its predecessor at the foot of the hill to the dual-language school of today. It draws on district records, the city’s historic sites survey, the 1999 renovation drawings and photographs held by the Seattle Public Schools Archives and the Museum of History &amp; Industry.</p>
+      <p>South Park has changed a great deal around it. The river was straightened into a shipping channel, farmland gave way to industry, a freeway was built along the hill and, from the 1970s, the neighborhood became home to a large Latino community. The school changed too. It was enlarged, renovated, designated a city landmark and, in 2009, began teaching in both Spanish and English.</p>
+      <p>This account follows Concord from its predecessor at the foot of the hill to the dual-language school of today. It draws on district records, the city’s historic sites survey, the 1999 renovation drawings and photographs held by the Seattle Public Schools Archives and the Museum of History &amp; Industry.</p>
     </div>
     <figure class="intro__facade" data-reveal="img">
-      <div class="ph"><span class="pill">North façade</span><img data-parallax src="assets/img/north-facade.jpg" alt="Close view of the red and buff brick north façade with tall sash windows." loading="lazy" width="1192" height="2000"></div>
-      <figcaption class="cap"><b>North façade.</b> Red brick laid in bands with buff courses, tall sash windows and a stone belt course, cleaned and repaired during the 1999-2000 renovation.</figcaption>
+      <div class="ph"><span class="pill">North facade</span><img data-parallax src="assets/img/north-facade.jpg" alt="Close view of the red and buff brick north facade with tall sash windows." loading="lazy" width="1192" height="2000"></div>
+      <figcaption class="cap"><b>North facade.</b> Red brick laid in bands with buff courses, tall sash windows and a stone belt course, cleaned and repaired during the 1999-2000 renovation.</figcaption>
     </figure>
   </div>
 
   <dl class="facts" data-stagger>
-    <div data-reveal><dt>Opened</dt><dd>25 January 1914</dd></div>
+    <div data-reveal><dt>Opened</dt><dd>January 25, 1914</dd></div>
     <div data-reveal><dt>Architect</dt><dd>Edgar Blair</dd></div>
     <div data-reveal><dt>Renovated</dt><dd>1999 to 2000</dd></div>
-    <div data-reveal><dt>City landmark</dt><dd>18 February 1998</dd></div>
+    <div data-reveal><dt>City landmark</dt><dd>February 18, 1998</dd></div>
   </dl>
 </section>
 
@@ -115,7 +119,7 @@
   <div class="pin__stick">
     <img class="bleed__img" data-zoom src="assets/img/school-1914.jpg" alt="Concord School around 1914: the new brick building on bare ground." loading="lazy">
     <div class="bleed__shade"></div>
-    <p class="bleed__statement" data-reveal="words">Three storeys of red and buff brick on a ridge above the Duwamish River</p>
+    <p class="bleed__statement" data-reveal="words">Three stories of red and buff brick on a ridge above the Duwamish River</p>
     <p class="cap bleed__cap"><b>Concord School, c. 1914.</b> The new building on its unplanted site, with a boardwalk at the corner and three ventilator cowls on the roof. Seattle Public Schools Archives.</p>
   </div>
 </section>
@@ -131,7 +135,7 @@
 
   <div class="grid chapter__body">
     <aside class="chapter__aside">
-      <i class="fig fig--river" style="--fc:var(--blue)" data-reveal></i>
+      <img class="fig" src="assets/figures/river-blue.png" alt="" width="444" height="640" data-reveal>
       <blockquote class="quote" data-reveal>
         <p>“Many explored it on tippy rafts and had to explain why they were tardy and dripping wet.”</p>
         <footer>On the slough beside South Park School. <cite>Building for Learning: Seattle Public School Histories, 1862-2022.</cite></footer>
@@ -141,31 +145,31 @@
     <div class="prose chapter__text">
       <div data-reveal>
         <p class="lede">For thousands of years the Duwamish people lived along the river that gives the valley its name, fishing its waters and building cedar longhouses on its banks.</p>
-        <p>American settlers began claiming land in the area in the 1850s. In 1889 a farm on the river was platted as the town of South Park, though it grew slowly; industry favoured neighbouring Georgetown and South Park remained largely agricultural.</p>
+        <p>American settlers began claiming land in the area in the 1850s. In 1889 a farm on the river was platted as the town of South Park, though it grew slowly; industry favored neighbouring Georgetown and South Park remained largely agricultural.</p>
         <p>By the early 1900s many of its farmers were Italian and Japanese immigrants who grew vegetables on the river flats. After 1907 they sold much of their produce directly at the new Pike Place Market. South Park incorporated as a city in 1905 and two years later voted, 186 to 36, to be annexed by Seattle.</p>
       </div>
       <div data-reveal>
         <h3>South Park School</h3>
-        <p>The neighbourhood’s first school, South Park School, was an eight-room, two-storey wooden building on Twelfth Avenue South, at the bottom of the hill. It had opened by 1902 and became part of the Seattle School District with annexation. A slough beside the school was a known temptation for pupils, some of whom arrived late and wet after exploring it on rafts.</p>
-        <p>By 1909 the school was overcrowded. That year the board purchased a site on Concord Street between Seventh and Eighth Avenues South, and in 1912 it voted to build a fireproof brick school there. The new building was named Concord School after the street it faced; the name was approved on 24 February 1913.</p>
+        <p>The neighborhood’s first school, South Park School, was an eight-room, two-story wooden building on Twelfth Avenue South, at the bottom of the hill. It had opened by 1902 and became part of the Seattle School District with annexation. A slough beside the school was a known temptation for students, some of whom arrived late and wet after exploring it on rafts.</p>
+        <p>By 1909 the school was overcrowded. That year the board purchased a site on Concord Street between Seventh and Eighth Avenues South, and in 1912 it voted to build a fireproof brick school there. The new building was named Concord School after the street it faced; the name was approved on February 24, 1913.</p>
       </div>
       <div data-reveal id="ch1-move">
         <h3>The move</h3>
-        <p>On 25 January 1914 between 200 and 300 pupils cleared their desks at South Park School and carried their books and supplies up the hill. As they approached the new building, the first streetcar crossed the new bridge over the Duwamish on Eighth Avenue South.</p>
-        <p>The grounds were unfinished. At the first recess the schoolyard was deep mud, and pupils who played in it were sent home to clean up. Others who left the grounds lost their way in the ferns and hazelnut bushes that still covered the hillside. The principal, F. C. Jackson, who had come from South Park School, set new rules soon afterwards.</p>
+        <p>On January 25, 1914 between 200 and 300 students cleared their desks at South Park School and carried their books and supplies up the hill. As they approached the new building, the first streetcar crossed the new bridge over the Duwamish on Eighth Avenue South.</p>
+        <p>The grounds were unfinished. At the first recess the schoolyard was deep mud, and students who played in it were sent home to clean up. Others who left the grounds lost their way in the ferns and hazelnut bushes that still covered the hillside. The principal, F. C. Jackson, who had come from South Park School, set new rules soon afterwards.</p>
         <p>The old building remained in use as an annex of Concord until September 1932. It was demolished in 1938, and the site is now occupied by the South Park Community Center.<i class="endmark"></i></p>
       </div>
     </div>
 
     <div class="chapter__side">
       <figure data-reveal="img">
-        <div class="ph"><span class="pill">Postcard</span><img src="assets/img/postcard.jpg" alt="Early real-photo postcard of Concord School, hand-lettered ‘Concord School, South Park’." loading="lazy" width="400" height="258"></div>
-        <figcaption class="cap"><b>Concord School, South Park.</b> A real-photo postcard from the school’s early years.</figcaption>
+        <div class="ph ph--plain"><span class="pill">By 1902</span><img src="assets/img/south-park-school.jpg" alt="Halftone print of South Park School, a two-story wooden schoolhouse with a bell tower." loading="lazy" width="1410" height="1275"></div>
+        <figcaption class="cap"><b>South Park School.</b> The wooden schoolhouse at the foot of the hill, open by 1902. It served as an annex of Concord from 1914 until 1932 and was demolished in 1938.</figcaption>
       </figure>
       <table class="spec" data-reveal>
         <caption>South Park School</caption>
         <tr><th>Location</th><td>12th Avenue S, between Sullivan and Thistle</td></tr>
-        <tr><th>Building</th><td>Eight rooms, two storeys, wood</td></tr>
+        <tr><th>Building</th><td>Eight rooms, two stories, wood</td></tr>
         <tr><th>Site</th><td>0.85 acres</td></tr>
         <tr><th>c. 1902</th><td>Opens</td></tr>
         <tr><th>1907</th><td>Joins Seattle School District</td></tr>
@@ -196,32 +200,32 @@
       <table class="spec" data-reveal>
         <caption>Concord School</caption>
         <tr><th>Architect</th><td>Edgar Blair</td></tr>
-        <tr><th>Named</th><td>24 February 1913</td></tr>
-        <tr><th>Opened</th><td>25 January 1914</td></tr>
+        <tr><th>Named</th><td>February 24, 1913</td></tr>
+        <tr><th>Opened</th><td>January 25, 1914</td></tr>
         <tr><th>Cost</th><td>$80,460</td></tr>
         <tr><th>Style</th><td>Beaux Arts Neoclassical</td></tr>
-        <tr><th>Form</th><td>Three storeys, nine rooms</td></tr>
+        <tr><th>Form</th><td>Three stories, nine rooms</td></tr>
         <tr><th>Walls</th><td>Red and buff brick</td></tr>
         <tr><th>Roof</th><td>Low hip, wooden cornice</td></tr>
         <tr><th>Site</th><td>4.21 acres today</td></tr>
-        <tr><th>Landmark</th><td>18 February 1998</td></tr>
+        <tr><th>Landmark</th><td>February 18, 1998</td></tr>
       </table>
     </aside>
 
     <div class="prose chapter__text">
       <div data-reveal>
         <p class="lede">Concord School was designed by Edgar Blair, architect to the Seattle School District.</p>
-        <p>Born in Des Moines, Iowa, in 1871, Blair studied architecture at Columbia University and worked as a draughtsman for McKim, Mead &amp; White in New York before opening his own practice in Washington, DC. He moved to Seattle in 1906, joined the school board’s staff as head draughtsman by 1909 and served as district architect from 1910 to 1918, working on about 32 schools.</p>
-        <p>Seattle’s population was growing rapidly, and the district needed durable, fire-resistant buildings that could be built quickly in new neighbourhoods. Blair’s response was a series of standard designs in brick. Concord belongs to one such group: the district’s history records it as identical to McGilvra School in Madison Park and McDonald School near Green Lake, both completed within months of Concord.</p>
+        <p>Born in Des Moines, Iowa, in 1871, Blair studied architecture at Columbia University and worked as a draftsman for McKim, Mead &amp; White in New York before opening his own practice in Washington, DC. He moved to Seattle in 1906, joined the school board’s staff as head draftsman by 1909 and served as district architect from 1910 to 1918, working on about 32 schools.</p>
+        <p>Seattle’s population was growing rapidly, and the district needed durable, fire-resistant buildings that could be built quickly in new neighborhoods. Blair’s response was a series of standard designs in brick. Concord belongs to one such group: the district’s history records it as identical to McGilvra School in Madison Park and McDonald School near Green Lake, both completed within months of Concord.</p>
       </div>
       <div data-reveal>
         <h3>The design</h3>
-        <p>The building is a three-storey rectangle under a low hipped roof. Its walls are red brick, banded with courses of buff brick, and a deep wooden cornice with modillions runs below the eaves. Tall sash windows are grouped in threes and fours to light the classrooms. The entrance projects from the main façade in pale brick and cast stone, with the school’s name carved in the lintel and a decorated surround framing the doors.</p>
-        <p>The city’s historic sites survey classifies the style as Beaux Arts Neoclassical; the school district describes it as Colonial Revival. In either case the effect relies less on ornament than on proportion, the rhythm of the window bays and the contrast of the two brick colours.</p>
+        <p>The building is a three-story rectangle under a low hipped roof. Its walls are red brick, banded with courses of buff brick, and a deep wooden cornice with modillions runs below the eaves. Tall sash windows are grouped in threes and fours to light the classrooms. The entrance projects from the main facade in pale brick and cast stone, with the school’s name carved in the lintel and a decorated surround framing the doors.</p>
+        <p>The city’s historic sites survey classifies the style as Beaux Arts Neoclassical; the school district describes it as Colonial Revival. In either case the effect relies less on ornament than on proportion, the rhythm of the window bays and the contrast of the two brick colors.</p>
       </div>
       <div data-reveal>
         <h3>Cost and siting</h3>
-        <p>The school cost $80,460 to build and enrolled about 240 pupils in its first year. It was placed on the most prominent ridge in the neighbourhood, visible from the farms below. The city’s survey notes that its plan, windows and cladding remain intact and that it contributes to South Park’s historic identity.</p>
+        <p>The school cost $80,460 to build and enrolled about 240 students in its first year. It was placed on the most prominent ridge in the neighborhood, visible from the farms below. The city’s survey notes that its plan, windows and cladding remain intact and that it contributes to South Park’s historic identity.</p>
         <p>Blair returned to private practice in 1919 and died in Seattle in 1924.<i class="endmark"></i></p>
       </div>
     </div>
@@ -246,12 +250,12 @@
   </div>
 </section>
 
-<!-- ============ READING THE FAÇADE ============ -->
-<section class="plane cream pin facade" id="facade" data-theme="light" data-title="Reading the façade" style="--len:5">
+<!-- ============ READING THE FACADE ============ -->
+<section class="plane cream pin facade" id="facade" data-theme="light" data-title="Reading the facade" style="--len:5">
   <div class="pin__stick facade__stick">
     <div class="facade__copy">
       <p class="kicker"><span class="badge">02</span> The building</p>
-      <h2 class="display display--m" data-reveal="words">Reading the façade</h2>
+      <h2 class="display display--m" data-reveal="words">Reading the facade</h2>
       <p class="sub sub--s" data-reveal>Eight features of Blair’s design, from the three cowls on the roof to the stone base.</p>
       <ol class="facade__list" id="facadeList">
         <li data-i="0"><button><b>1</b><span><strong>Hip roof</strong><em>Low and plain, leaving the walls to carry the design.</em></span></button></li>
@@ -265,18 +269,10 @@
       </ol>
     </div>
     <div class="facade__art" id="facadeArt">
-      <div class="facade__img">
-        <img src="assets/img/facade-diagram.png" alt="Illustration of Concord School seen from the north-east corner." loading="lazy" width="1536" height="1024">
-        <button class="dot" data-i="0" style="--x:50%;--y:24%" aria-label="1 Hip roof"><i>1</i></button>
-        <button class="dot" data-i="1" style="--x:11%;--y:31%" aria-label="2 Cornice"><i>2</i></button>
-        <button class="dot" data-i="2" style="--x:33%;--y:50%" aria-label="3 Banding"><i>3</i></button>
-        <button class="dot" data-i="3" style="--x:10.6%;--y:86%" aria-label="4 Side door"><i>4</i></button>
-        <button class="dot" data-i="4" style="--x:38.6%;--y:8.5%" aria-label="5 Three cowls"><i>5</i></button>
-        <button class="dot" data-i="4" style="--x:54%;--y:13.5%" aria-label="5 Three cowls"><i>5</i></button>
-        <button class="dot" data-i="4" style="--x:68.8%;--y:17.5%" aria-label="5 Three cowls"><i>5</i></button>
-        <button class="dot" data-i="5" style="--x:88.5%;--y:51%" aria-label="6 Sash windows"><i>6</i></button>
-        <button class="dot" data-i="6" style="--x:70%;--y:62%" aria-label="7 Entrance"><i>7</i></button>
-        <button class="dot" data-i="7" style="--x:45%;--y:91.5%" aria-label="8 Raised base"><i>8</i></button>
+      <div class="facade__img" id="facadeImg" style="--cx:.52;--cy:.25;--rx:.2;--ry:.1">
+        <img class="facade__base" src="assets/img/facade-diagram.png" alt="Illustration of Concord School seen from the north-east corner." loading="lazy" width="1536" height="1024">
+        <img class="facade__color" src="assets/img/facade-diagram.png" alt="" aria-hidden="true" loading="lazy" width="1536" height="1024">
+        <div class="lens" id="lens" aria-hidden="true"><span class="lens__tag" id="lensTag"><b>01</b><i>Hip roof</i></span></div>
       </div>
       <p class="facade__count" aria-hidden="true"><b id="facadeN">1</b><span>/ 8</span></p>
     </div>
@@ -298,91 +294,104 @@
 </section>
 
 <!-- ============ CONCORD IN FIGURES ============ -->
-<section class="plane cream figures" id="figures" data-theme="light" data-title="Concord in figures">
-  <div class="grid chapter__head">
-    <p class="kicker" data-reveal><span class="badge">02</span> Chapter 2 <i>Concord in figures</i></p>
-    <h2 class="display" data-reveal="words">Concord in figures</h2>
-    <p class="sub sub--up" data-reveal>Enrolment, land and languages at one address, drawn from the district’s records.</p>
+<section class="plane cream figures" id="figures" data-theme="light" data-title="A century on one hill">
+  <div class="grid chapter__head figures__head">
+    <p class="kicker" data-reveal><span class="badge">02</span> Concord in figures <i>1914 to 2022</i></p>
+    <h2 class="display" data-reveal="words">A century on one hill</h2>
+    <p class="dek" data-reveal>The building has changed little since 1914. The number of children inside it, the land around it and the languages they speak have changed a great deal. These pages chart that century from the district’s records.</p>
   </div>
   <hr class="rule" data-reveal="rule">
 
-  <!-- pupils -->
-  <div class="grid fblock">
-    <header class="fblock__head" data-reveal><h3>Pupils on the roll</h3><p class="note">Each figure represents 20 pupils</p></header>
-    <div class="roll">
-      <div class="roll__row" data-reveal style="--k:var(--teal-d)"><img src="assets/img/school-1914.jpg" alt="" loading="lazy"><p><b>1914</b><span>First year</span><strong data-count="240">240</strong></p><div class="picto" data-n="240" data-unit="20"></div></div>
-      <div class="roll__row" data-reveal style="--k:var(--terra)"><img src="assets/img/aerial-1965.jpg" alt="" loading="lazy"><p><b>1958-59</b><span>The peak</span><strong data-count="516">516</strong></p><div class="picto" data-n="516" data-unit="20"></div></div>
-      <div class="roll__row" data-reveal style="--k:var(--teal-d)"><img src="assets/img/entrance-today.jpg" alt="" loading="lazy"><p><b>2014</b><span>Immersion era</span><strong data-count="412">412</strong></p><div class="picto" data-n="412" data-unit="20"></div></div>
-      <div class="roll__row" data-reveal style="--k:var(--teal-d)"><img src="assets/img/north-facade.jpg" alt="" loading="lazy"><p><b>2022</b><span>Latest count</span><strong data-count="329">329</strong></p><div class="picto" data-n="329" data-unit="20"></div></div>
+  <!-- students on the roll -->
+  <div class="roll" id="roll" data-reveal>
+    <p class="tag">Students on the roll</p>
+    <div class="roll__scroll">
+      <svg id="rollSvg" viewBox="0 0 900 540" role="img" aria-label="Line chart of recorded enrollment: 240 students in 1914, a peak of 516 in 1958-59, 412 in 2014 and 329 in 2022."></svg>
     </div>
+    <p class="note">Recorded enrollment for selected years. The line joins recorded figures only. Building: Concord School, c. 1914.</p>
   </div>
   <hr class="rule rule--soft" data-reveal="rule">
 
-  <!-- block -->
-  <div class="grid fblock">
-    <header class="fblock__head" data-reveal><h3>Buying the block</h3><p class="note">The school site between 7th and 8th Avenues S. District land in teal; private lots in grey</p></header>
-    <div class="block" id="block" data-reveal>
-      <div class="block__map">
-        <svg id="blockSvg" viewBox="0 0 320 196" role="img" aria-label="Plan of the school block showing district land growing from 46 per cent in 1928 to the full block in 2000."></svg>
+  <!-- the river moved -->
+  <div class="grid tri river">
+    <figure data-reveal>
+      <div class="compare" id="compare" style="--pos:50%">
+        <img src="assets/img/map-today.jpg" alt="The Duwamish valley today: the river runs in a straightened channel." loading="lazy" width="554" height="618">
+        <div class="compare__top"><img src="assets/img/map-1800s.jpg" alt="The Duwamish valley in the mid-1800s: the river winds in broad meanders." loading="lazy" width="554" height="618"></div>
+        <span class="tag compare__a">Mid-1800s</span><span class="tag compare__b">Today</span>
+        <i class="compare__bar" aria-hidden="true"></i>
+        <input type="range" min="0" max="100" value="50" step="0.1" aria-label="Slide between the valley in the mid-1800s and today">
       </div>
-      <div class="block__read">
-        <div class="seg" role="tablist" aria-label="Year">
-          <button role="tab" aria-selected="true" data-y="1928">1928</button>
-          <button role="tab" aria-selected="false" data-y="1945">1945</button>
-          <button role="tab" aria-selected="false" data-y="2000">2000</button>
-        </div>
-        <p class="block__big"><b id="blockAcres">1.93</b><span>acres</span></p>
-        <p class="block__pct"><b id="blockPct">46</b>% of the block</p>
-        <div class="block__bar"><i id="blockBar"></i></div>
-        <p class="note">Schematic. Solid outline: 1913 building. Dashed: 2000 additions.</p>
+      <figcaption class="cap"><b>Duwamish Valley, South Seattle. Maps: The Waterlines Project, Burke Museum</b></figcaption>
+    </figure>
+    <div class="river__copy" data-reveal style="--d:.1s">
+      <h3>The river moved</h3>
+      <p class="bignum"><b data-count="66">66</b><span>Acres added<br>to South Park<br>by 1920</span></p>
+      <p class="dek">From 1913 the meandering Duwamish was dredged and straightened into a deep shipping channel, and South Park gained land along its banks.</p>
+    </div>
+    <figure class="river__car" data-reveal style="--d:.2s">
+      <img src="assets/img/streetcar.png" alt="A streetcar crossing a timber bridge over the Duwamish." loading="lazy" width="1024" height="550">
+      <figcaption class="cap"><b>A streetcar on a Duwamish bridge. On Jan 25, 1914 the first car crossed the new 8th Ave S bridge as students walked up to Concord.</b></figcaption>
+    </figure>
+  </div>
+
+  <figure class="wide hall" data-reveal="img">
+    <div class="ph"><span class="pill">Today</span><img data-parallax src="assets/img/hallway.jpg" alt="Students with backpacks walk past a hallway mural and a row of world flags." loading="lazy" width="880" height="601"></div>
+    <figcaption class="cap"><b>Students pass a hallway mural and a row of world flags</b></figcaption>
+  </figure>
+
+  <!-- two languages -->
+  <div class="grid fblock" id="languages">
+    <header class="fblock__head" data-reveal>
+      <h3>Two languages</h3>
+      <p class="dek">Share of students receiving bilingual services. Concord became an ESL and bilingual center in 1996-97, and began Spanish-English dual-language immersion in 2009.</p>
+    </header>
+    <div class="bars" data-reveal>
+      <div class="bar" style="--v:17;--c:var(--blue)">
+        <span class="bar__y">1996-97</span>
+        <div class="bar__track"><i></i><b><span data-count="17">17</span>%</b></div>
+        <span class="bar__l" style="--at:17">ESL and bilingual center opens</span>
       </div>
+      <div class="bar" style="--v:49;--c:var(--teal)">
+        <span class="bar__y">2014</span>
+        <div class="bar__track"><i></i><b><span data-count="49">49</span>%</b></div>
+        <span class="bar__l" style="--at:49">Five years into immersion</span>
+      </div>
+      <p class="bars__axis"><span>0%</span><span>50%</span><span>100% of students</span></p>
     </div>
   </div>
   <hr class="rule rule--soft" data-reveal="rule">
 
-  <!-- blair's seattle -->
-  <div class="grid fblock">
-    <header class="fblock__head" data-reveal><h3>Blair’s Seattle</h3><p class="note">About 32 schools drawn under district architect Edgar Blair, 1910 to 1918</p></header>
-    <div class="blair" data-reveal>
-      <div class="blair__grid" id="blairGrid"></div>
-      <ul class="legend"><li style="--k:var(--terra)">Concord</li><li style="--k:var(--teal)">McGilvra and McDonald, the same design</li><li style="--k:#d9cdb8">Other Blair schools</li></ul>
+  <!-- buying the block -->
+  <div class="grid tri blockrow">
+    <div class="blockrow__copy" data-reveal>
+      <p class="tag">Buying the block</p>
+      <p class="dek">Concord opened on a hilltop lot surrounded by houses. The district enlarged the site in 1928 and 1945, and during the 1999-2000 renovation bought the last houses on the block.</p>
+      <div class="seg" role="tablist" aria-label="Year">
+        <button role="tab" aria-selected="true" data-y="1928">1928</button>
+        <button role="tab" aria-selected="false" data-y="1945">1945</button>
+        <button role="tab" aria-selected="false" data-y="2000">2000</button>
+      </div>
+      <p class="block__big"><b id="blockAcres">1.93</b><span>acres</span></p>
+      <p class="note">Squares drawn to scale by area. The 1965 aerial view fills the 1945 site for reference and is not to scale.</p>
     </div>
-  </div>
-  <hr class="rule rule--soft" data-reveal="rule">
-
-  <!-- languages -->
-  <div class="grid fblock">
-    <header class="fblock__head" data-reveal><h3>Two languages</h3><p class="note">Share of pupils receiving bilingual services. Each figure represents one per cent</p></header>
-    <div class="langs">
-      <div class="lang" data-reveal><div class="waffle" data-pct="17"></div><p class="lang__n"><b data-count="17">17</b>%</p><p class="note">1996-97, the year Concord became an ESL and bilingual centre</p></div>
-      <div class="lang lang--b" data-reveal><div class="waffle" data-pct="49"></div><p class="lang__n"><b data-count="49">49</b>%</p><p class="note">2014, five years after Spanish-English immersion began</p></div>
+    <div class="squares" id="squares" data-year="2000" data-reveal style="--d:.1s" role="img" aria-label="Three nested squares drawn to scale: 1.93 acres in 1928, 3.44 acres in 1945 and 4.21 acres in 2000.">
+      <div class="sq sq--2000"><span><b>4.21</b> acres 2000</span></div>
+      <div class="sq sq--1945"><span><b>3.44</b> acres 1945</span></div>
+      <div class="sq sq--1928"><span><b>1.93</b> acres 1928</span></div>
     </div>
-  </div>
-  <hr class="rule rule--soft" data-reveal="rule">
-
-  <!-- growth -->
-  <div class="grid fblock">
-    <header class="fblock__head" data-reveal><h3>How the building grew</h3><p class="note">Schematic elevations</p>
-      <ul class="legend legend--col"><li style="--k:var(--teal-d)">1913 building</li><li style="--k:var(--teal)">Additions</li><li style="--k:var(--blue)">Portables</li></ul></header>
-    <div class="grew" data-stagger>
-      <figure data-reveal><svg viewBox="0 0 200 96" class="elev"><g class="e-main"><use href="#e-main" x="62"/></g></svg><figcaption><b>1914</b><span>The Blair building</span></figcaption></figure>
-      <figure data-reveal><svg viewBox="0 0 200 96" class="elev"><g class="e-main"><use href="#e-main" x="34"/></g><g class="e-port"><rect x="118" y="62" width="20" height="13"/><rect x="142" y="62" width="20" height="13"/><rect x="166" y="62" width="20" height="13"/><rect x="118" y="79" width="20" height="13"/><rect x="142" y="79" width="20" height="13"/><rect x="166" y="79" width="20" height="13"/></g></svg><figcaption><b>1960</b><span>Six portables on the grounds</span></figcaption></figure>
-      <figure data-reveal><svg viewBox="0 0 200 96" class="elev"><g class="e-main"><use href="#e-main" x="22"/></g><g class="e-add"><rect x="100" y="56" width="52" height="36"/></g><g class="e-win"><rect x="108" y="64" width="9" height="10"/><rect x="121" y="64" width="9" height="10"/><rect x="134" y="64" width="9" height="10"/></g><g class="e-port"><rect x="158" y="62" width="18" height="13"/><rect x="158" y="79" width="18" height="13"/><rect x="180" y="79" width="18" height="13"/></g></svg><figcaption><b>1971</b><span>Gymnasium added; three portables</span></figcaption></figure>
-      <figure data-reveal><svg viewBox="0 0 200 96" class="elev"><g class="e-add"><rect x="6" y="54" width="46" height="38"/><rect x="134" y="46" width="44" height="46"/></g><g class="e-win"><rect x="13" y="61" width="9" height="9"/><rect x="26" y="61" width="9" height="9"/><rect x="141" y="54" width="8" height="9"/><rect x="152" y="54" width="8" height="9"/><rect x="163" y="54" width="8" height="9"/></g><g class="e-main"><use href="#e-main" x="56"/></g></svg><figcaption><b>2000</b><span>New wing and gymnasium</span></figcaption></figure>
-    </div>
-  </div>
-  <hr class="rule rule--soft" data-reveal="rule">
-
-  <!-- grades -->
-  <div class="grid fblock">
-    <header class="fblock__head" data-reveal><h3>Who it taught</h3><p class="note">Seventh and eighth grades moved to Cleveland in 1927-28.</p></header>
-    <div class="grades" id="grades" data-reveal></div>
+    <figure class="blockrow__card" data-reveal="img" style="--d:.2s">
+      <div class="ph"><img src="assets/img/postcard-color.jpg" alt="Colour postcard of Concord Elementary School with a Concord pennant in the sky." loading="lazy" width="570" height="360"></div>
+      <figcaption class="cap"><b>Postcard, Concord Elementary School, South Park. Undated.</b></figcaption>
+    </figure>
   </div>
 
-  <svg class="sprite" aria-hidden="true"><defs><g id="e-main">
-    <path d="M20 14h6v6h9v-6h6v6h9v-6h6v6h4l6 8v64H4V28l6-8h10z"/>
-    <g class="e-win" fill="#efeae0"><rect x="10" y="34" width="6" height="11"/><rect x="19" y="34" width="6" height="11"/><rect x="28" y="34" width="6" height="11"/><rect x="37" y="34" width="6" height="11"/><rect x="46" y="34" width="6" height="11"/><rect x="55" y="34" width="6" height="11"/><rect x="64" y="34" width="6" height="11"/><rect x="10" y="51" width="6" height="11"/><rect x="19" y="51" width="6" height="11"/><rect x="28" y="51" width="6" height="11"/><rect x="37" y="51" width="6" height="11"/><rect x="46" y="51" width="6" height="11"/><rect x="55" y="51" width="6" height="11"/><rect x="64" y="51" width="6" height="11"/><rect x="10" y="68" width="6" height="11"/><rect x="19" y="68" width="6" height="11"/><rect x="28" y="68" width="6" height="11"/><rect x="46" y="68" width="6" height="11"/><rect x="55" y="68" width="6" height="11"/><rect x="64" y="68" width="6" height="11"/><rect x="36" y="74" width="8" height="18"/></g>
-  </g></defs></svg>
+  <div class="statrow" data-stagger>
+    <p data-reveal><b>$<span data-count="80460" data-sep="1">80,460</span></b><span>Cost to build, 1913</span></p>
+    <p data-reveal><b>186 <i>to</i> 36</b><em class="vote" aria-hidden="true"><i></i></em><span>Vote to join Seattle, 1907</span></p>
+    <p data-reveal><b data-count="32">32</b><span>Seattle schools by Edgar Blair</span></p>
+    <p data-reveal><b>1–8 <i>to</i> K–5</b><span>Grades in 1914 and today</span></p>
+  </div>
 </section>
 
 <!-- ============ 03 ============ -->
@@ -396,8 +405,8 @@
   <div class="grid chapter__body chapter__body--two">
     <div class="prose" data-reveal>
       <p class="lede">For much of the twentieth century Concord’s classes were photographed each year on the stair of the main entrance.</p>
-      <p>The prints in the district archive are numbered in white ink and dated by hand, and together they form a record of the neighbourhood’s children across eight decades.</p>
-      <p>The earliest surviving portrait shows the entire school assembled at once. Pupils fill the stair and the ground on either side of it, the youngest seated in front, the oldest standing on the stair walls, with members of the baseball team in their lettered jerseys among them. The portraits of the 1930s show single classes: boys in overalls and lace-up boots, girls in cotton print dresses and, in winter, heavy coats.</p>
+      <p>The prints in the district archive are numbered in white ink and dated by hand, and together they form a record of the neighborhood’s children across eight decades.</p>
+      <p>The earliest surviving portrait shows the entire school assembled at once. Students fill the stair and the ground on either side of it, the youngest seated in front, the oldest standing on the stair walls, with members of the baseball team in their lettered jerseys among them. The portraits of the 1930s show single classes: boys in overalls and lace-up boots, girls in cotton print dresses and, in winter, heavy coats.</p>
     </div>
     <div class="prose" data-reveal style="--d:.1s">
       <p>South Park at that time was a community of small farms and houses, home to families of Italian, Japanese and other backgrounds. Japanese American farmers in the Duwamish and Green River valleys supplied a large share of the produce sold at Pike Place Market, although state law prevented them from owning land.</p>
@@ -406,7 +415,7 @@
   </div>
   <figure class="wide wide--bleed" data-reveal="img">
     <div class="ph"><span class="pill">Undated</span><img data-parallax src="assets/img/whole-school.jpg" alt="The whole school gathered on and around the main stair." loading="lazy" width="2000" height="1230"></div>
-    <figcaption class="cap"><b>The whole school, undated.</b> Every pupil gathered on and around the main stair, with members of the baseball team at upper left. Seattle Public Schools Archives.</figcaption>
+    <figcaption class="cap"><b>The whole school, undated.</b> Every student gathered on and around the main stair, with members of the baseball team at upper left. Seattle Public Schools Archives.</figcaption>
   </figure>
 </section>
 
@@ -419,31 +428,31 @@
         <p class="reel__title">1933<br>1935<br>1936<br>1996<span>–97</span></p>
         <p class="reel__hint">Keep scrolling <i>→</i></p>
       </div>
-      <figure class="reel__panel"><div class="ph"><img width="2000" height="1307" src="assets/img/class-1933.jpg" alt="Class portrait, January 1933: pupils in winter coats on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1933</b><span class="cap"><b>January 1933.</b> A winter class portrait, with coats and snow on the stair. Seattle Public Schools Archives.</span></figcaption></figure>
+      <figure class="reel__panel"><div class="ph"><img width="2000" height="1307" src="assets/img/class-1933.jpg" alt="Class portrait, January 1933: students in winter coats on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1933</b><span class="cap"><b>January 1933.</b> A winter class portrait, with coats and snow on the stair. Seattle Public Schools Archives.</span></figcaption></figure>
       <figure class="reel__panel"><div class="ph"><img width="2000" height="1264" src="assets/img/class-1935.jpg" alt="Class portrait, June 1935: boys seated on the bottom step, girls standing behind." loading="lazy"></div><figcaption><b class="reel__year">1935</b><span class="cap"><b>June 1935.</b> The boys seated on the bottom step, the girls standing behind. Seattle Public Schools Archives.</span></figcaption></figure>
       <figure class="reel__panel"><div class="ph"><img width="2000" height="1300" src="assets/img/class-1936.jpg" alt="Class portrait, June 1936, on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1936</b><span class="cap"><b>June 1936.</b> A class on the main stair between the concrete stair walls. Seattle Public Schools Archives.</span></figcaption></figure>
-      <figure class="reel__panel"><div class="ph"><img width="1872" height="1272" src="assets/img/class-1996.jpg" alt="Colour class portrait, 1996-97: a second-grade class and their teacher on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1996<small>–97</small></b><span class="cap"><b>1996-97.</b> Mrs Maria Fletcher’s second grade on the main stair. Principal: Ms Claudia Allan. Courtesy of a former pupil.</span></figcaption></figure>
+      <figure class="reel__panel"><div class="ph"><img width="1872" height="1272" src="assets/img/class-1996.jpg" alt="Colour class portrait, 1996-97: a second-grade class and their teacher on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1996<small>–97</small></b><span class="cap"><b>1996-97.</b> Mrs. Maria Fletcher’s second grade on the main stair. Principal: Ms. Claudia Allan. Courtesy of a former student.</span></figcaption></figure>
     </div>
   </div>
 </section>
 
-<section class="plane light chapter chapter--tight" id="colour" data-theme="light" data-title="The same stair, in colour">
+<section class="plane light chapter chapter--tight" id="color" data-theme="light" data-title="The same stair, in color">
   <div class="grid chapter__head">
-    <h3 class="display display--m" data-reveal="words">The same stair, in colour</h3>
+    <h3 class="display display--m" data-reveal="words">The same stair, in color</h3>
   </div>
   <hr class="rule" data-reveal="rule">
   <div class="grid chapter__body chapter__body--two">
     <div class="prose" data-reveal>
-      <p>The class portraits continued into the 1990s. The setting had not changed: the photographer still worked at the main entrance, and pupils still stood on the stair between the same stone walls, the smallest in front. The prints were now in colour, mounted on card with the school year, the teacher’s name and the names of every pupil.</p>
+      <p>The class portraits continued into the 1990s. The setting had not changed: the photographer still worked at the main entrance, and students still stood on the stair between the same stone walls, the smallest in front. The prints were now in color, mounted on card with the school year, the teacher’s name and the names of every student.</p>
     </div>
     <div class="prose" data-reveal style="--d:.1s">
-      <p>The 1996-97 school year was a significant one for Concord. That autumn it became an ESL and bilingual centre, with about 17 per cent of its pupils receiving bilingual services. By then South Park was home to a large Latino community.</p>
+      <p>The 1996-97 school year was a significant one for Concord. That fall it became an ESL and bilingual center, with about 17 percent of its students receiving bilingual services. By then South Park was home to a large Latino community.</p>
       <p>In 1999 the school closed for renovation. When it reopened in September 2000, the entrance and its stair, designated a city landmark the year before, had been preserved unchanged.<i class="endmark"></i></p>
     </div>
   </div>
   <div class="strip" data-reveal>
-    <i class="fig fig--bird" style="--fc:var(--teal-d)"></i>
-    <p class="cap"><b>On the mount.</b> “1996 Concord Elementary School 1997. Ms. Claudia Allan, Principal. Mrs. Maria Fletcher, Grade 2.” The names of 29 pupils follow, row by row.</p>
+    <img class="fig" src="assets/figures/bird.png" alt="" width="640" height="404">
+    <p class="cap"><b>On the mount.</b> “1996 Concord Elementary School 1997. Ms. Claudia Allan, Principal. Mrs. Maria Fletcher, Grade 2.” The names of 29 students follow, row by row.</p>
   </div>
 </section>
 
@@ -457,18 +466,18 @@
   <hr class="rule" data-reveal="rule">
   <div class="grid chapter__body chapter__body--media">
     <figure data-reveal="img">
-      <div class="ph"><span class="pill">Undated</span><img src="assets/img/lunchroom.jpg" alt="The lunchroom at midday: pupils at long tables with glass milk bottles." loading="lazy" width="474" height="575"></div>
-      <figcaption class="cap"><b>The lunchroom, undated.</b> Pupils at long tables with glass milk bottles. Seattle Post-Intelligencer collection, MOHAI, PI-25468.</figcaption>
+      <div class="ph"><span class="pill">Undated</span><img src="assets/img/lunchroom.jpg" alt="The lunchroom at midday: students at long tables with glass milk bottles." loading="lazy" width="474" height="575"></div>
+      <figcaption class="cap"><b>The lunchroom, undated.</b> Students at long tables with glass milk bottles. Seattle Post-Intelligencer collection, MOHAI, PI-25468.</figcaption>
     </figure>
     <div class="prose" data-reveal>
       <p class="lede">A photograph from the Seattle Post-Intelligencer collection shows Concord’s lunchroom at a busy midday: long wooden tables and benches, glass milk bottles and plates of food, with staff in aprons serving at the far end of the room.</p>
-      <p>Enrolment rose sharply after the Second World War. It reached its peak of 516 pupils in 1958-59, and by 1960 six portable classrooms stood on the grounds. In 1971 the district added a gymnasium and multipurpose room, designed by Shavey &amp; Schmidt, and the number of portables was reduced to three.</p>
-      <p>By the early 1970s a large mural covered the lunchroom’s end wall: concentric rings, clouds and stars, plants and fruit, and at its centre a sun with a face. In one photograph of the period, a hand-lettered sign beside the flag warns that the paint is still wet.</p>
+      <p>Enrollment rose sharply after the Second World War. It reached its peak of 516 students in 1958-59, and by 1960 six portable classrooms stood on the grounds. In 1971 the district added a gymnasium and multipurpose room, designed by Shavey &amp; Schmidt, and the number of portables was reduced to three.</p>
+      <p>By the early 1970s a large mural covered the lunchroom’s end wall: concentric rings, clouds and stars, plants and fruit, and at its center a sun with a face. In one photograph of the period, a hand-lettered sign beside the flag warns that the paint is still wet.</p>
     </div>
   </div>
   <div class="strip strip--stats" data-stagger>
-    <i class="fig fig--creature" style="--fc:var(--teal-d)" data-reveal></i>
-    <p data-reveal><b data-count="516">516</b><span>Pupils at the 1958-59 peak</span></p>
+    <img class="fig" src="assets/figures/creature.png" alt="" width="515" height="640" data-reveal>
+    <p data-reveal><b data-count="516">516</b><span>Students at the 1958-59 peak</span></p>
     <p data-reveal><b data-count="6">6</b><span>Portable classrooms, 1960</span></p>
     <p data-reveal><b data-count="1971" data-from="1914">1971</b><span>Gymnasium and multipurpose room added</span></p>
   </div>
@@ -485,21 +494,23 @@
       <h3 class="display display--m" data-reveal="words">The 1938 blackboard</h3>
       <hr class="rule" data-reveal="rule">
       <div class="prose" data-reveal>
-        <p>In 1990 workers removing a chalkboard to install bulletin boards found an older blackboard behind it. It had been decorated by the sixth-grade class of June 1938 with three coloured-chalk drawings of scenes from Norway, Portugal and Italy. The six artists signed beneath their pictures, and the other 20 members of the class signed in lists between them.</p>
-        <p>The discovery led to a reunion of the teacher, Mary Luch Bleakney, and several of her former pupils.<i class="endmark"></i></p>
+        <p>In 1990 workers removing a chalkboard to install bulletin boards found an older blackboard behind it. The sixth-grade class of June 1938 had decorated it with three colored-chalk drawings of scenes from Norway, Portugal and Italy.</p>
+        <p>The six artists signed beneath their pictures, and their 20 classmates signed in lists between them. The discovery led to a reunion of the teacher, Mary Luch Bleakney, and several of her former students.<i class="endmark"></i></p>
       </div>
     </div>
     <div class="bb__stage">
+      <p class="tag">Found 1990</p>
       <div class="board" id="board">
-        <div class="board__in">
-          <p class="board__title">Class of June 1938</p>
-          <div class="board__scenes"><span>Norway</span><span>Portugal</span><span>Italy</span></div>
-          <div class="board__people" id="boardPeople"></div>
-          <p class="board__legend"><span class="g">6 artists</span><span>20 classmates</span></p>
-        </div>
+        <div class="board__in"><img src="assets/figures/blackboard-chalk.png" alt="Chalk drawings of a mountain, a ship and an arcade, labelled Norway, Portugal and Italy, under the heading Class of June 1938, with rows of signatures beneath." loading="lazy" width="1200" height="719"></div>
         <div class="board__cover" id="boardCover"><p><b>52</b><span>years hidden</span></p><em>1938 – 1990</em></div>
       </div>
-      <p class="note">Sixth grade, June 1938: 6 artists and 20 classmates. Hidden for 52 years.</p>
+      <div class="years" id="years">
+        <p class="years__t">52 years behind a newer chalkboard, one tick per year</p>
+        <div class="years__ticks" aria-hidden="true"></div>
+        <div class="years__bar" aria-hidden="true"><i></i></div>
+        <p class="years__ends"><span>June 1938 drawn</span><span>1990 found</span></p>
+      </div>
+      <p class="note">Illustrative reconstruction. Drawings and signatures are schematic, not a copy of the original board.</p>
     </div>
   </div>
 </section>
@@ -526,23 +537,23 @@
     <div class="prose" data-reveal>
       <p class="lede">By the 1990s the building needed substantial work.</p>
       <p>Seismic upgrades were carried out in 1992, but the building systems were ageing and the school needed more space. As with many schools of its period, the district faced a choice between renovation and replacement.</p>
-      <p>On 18 February 1998 the City of Seattle designated the 1913 exterior and the first-floor entrance stairwell as a landmark. The renovation that followed was funded by the district’s first Building Excellence levy and designed by the Tsang Partnership.</p>
+      <p>On February 18, 1998 the City of Seattle designated the 1913 exterior and the first-floor entrance stairwell as a landmark. The renovation that followed was funded by the district’s first Building Excellence levy and designed by the Tsang Partnership.</p>
     </div>
     <div class="prose" data-reveal style="--d:.1s">
       <p>The record drawings, dated February 1999, set out what would be removed and what would be kept. Interior partitions, finishes and ceilings were to be demolished. Structural beams and columns, concrete floors, stairs and masonry walls were to remain. The three roof ventilators were to be refurbished, the masonry cleaned and decayed wood sash replaced to match the original.</p>
-      <p>A new classroom wing and gymnasium were built beside the original in banded masonry block. Pupils spent the 1999-2000 school year at the E. C. Hughes building and returned in September 2000. The district also purchased the remaining houses on the block, bringing the whole of it into school ownership.<i class="endmark"></i></p>
+      <p>A new classroom wing and gymnasium were built beside the original in banded masonry block. Students spent the 1999-2000 school year at the E. C. Hughes building and returned in September 2000. The district also purchased the remaining houses on the block, bringing the whole of it into school ownership.<i class="endmark"></i></p>
     </div>
   </div>
 
   <figure class="pan" id="pan" data-reveal>
     <div class="pan__win"><img id="panImg" src="assets/img/sheet-a401.jpg" alt="Architect’s north elevation drawing showing the new gymnasium, the 1913 building and the new entry." loading="lazy" width="2400" height="716"></div>
-    <figcaption class="cap"><b>Sheet A401, north elevation.</b> New gymnasium at left, the 1913 building at centre, the new entry at right. Tsang Partnership, 16 February 1999.</figcaption>
+    <figcaption class="cap"><b>Sheet A401, north elevation.</b> New gymnasium at left, the 1913 building at center, the new entry at right. Tsang Partnership, February 16, 1999.</figcaption>
   </figure>
 
   <div class="strip strip--stats" data-stagger>
-    <i class="fig fig--book" style="--fc:var(--teal-d)" data-reveal></i>
+    <img class="fig" src="assets/figures/book.png" alt="" width="640" height="598" data-reveal>
     <p data-reveal><b data-count="1998" data-from="1913">1998</b><span>Exterior and entrance stair landmarked</span></p>
-    <p data-reveal><b data-count="1999" data-from="1913">1999</b><span>Pupils relocated to E. C. Hughes</span></p>
+    <p data-reveal><b data-count="1999" data-from="1913">1999</b><span>Students relocated to E. C. Hughes</span></p>
     <p data-reveal><b data-count="4.21" data-decimals="2">4.21</b><span>Acres: the full block</span></p>
   </div>
 
@@ -568,41 +579,45 @@
 </section>
 
 <!-- ============ 06 ============ -->
-<section class="plane light today" id="ch6" data-theme="light" data-title="06 · Two languages, one hill">
+<section class="plane light today" id="ch6" data-theme="light" data-title="06 · Five figures">
   <figure class="today__photo">
     <div class="ph"><span class="pill">723 S Concord Street</span><img data-parallax src="assets/img/entrance-today.jpg" alt="The landmarked main entrance of Concord School today." loading="lazy"></div>
     <figcaption class="cap"><b>723 S Concord Street.</b> The landmarked entrance, with the school’s name in the lintel and the school emblem mounted on either side of the doors.</figcaption>
   </figure>
   <div class="today__copy">
-    <p class="kicker" data-reveal><span class="badge">06</span> Chapter 6 <i>Today</i></p>
-    <h2 class="display display--l" data-reveal="words">Two languages, one hill</h2>
-    <p class="sub" data-reveal>Concord International School</p>
+    <p class="kicker" data-reveal><span class="badge">06</span> Chapter 6 <i>The school today</i></p>
+    <h2 class="display display--l" data-reveal="words">Five figures</h2>
+    <p class="sub" data-reveal>The emblem and the school today</p>
     <hr class="rule" data-reveal="rule">
     <div class="prose" data-reveal>
-      <p class="lede">Industry now surrounds much of South Park, and a freeway separates Concord from part of the neighbourhood it serves.</p>
-      <p>In 2010 the 1931 South Park Bridge over the Duwamish was closed as unsafe, leaving the community without its nearest river crossing until a replacement opened in 2014.</p>
-      <p>The school’s programmes changed with its community. Concord became an ESL and bilingual centre in 1996-97. From 1997 it was a model school for the Different Ways of Knowing programme, which combined social studies and the arts, and its Attic Theater programme brought all pupils into drama, dance and cultural studies. As part of a world cultures programme, pupils once built a model Mayan village.</p>
-      <p>In 2009 Concord introduced an International School programme with two-way dual-language immersion in Spanish and English, the third such programme in Seattle. Enrolment reached 412 in 2014, when 49 per cent of pupils received bilingual services.</p>
+      <p class="lede">Two copies of Concord’s emblem hang beside the main entrance, below the name carved in 1913.</p>
+      <p>It is a bold letter C divided into five segments, each holding a cut-paper figure: a bird, a branching plant, a winding river, a creature and an open book.</p>
+      <p>The school publishes no key to the emblem. Read against what happens inside the building today, though, each figure finds a counterpart. In 2018 Concord International School taught 365 students from kindergarten to fifth grade, about 60 percent of them Spanish speakers.</p>
     </div>
-    <div class="emblem" data-reveal>
-      <i class="fig fig--emblem" id="emblemSpin" style="--fc:var(--teal-d)"></i>
-      <div class="prose">
-        <h3>The emblem</h3>
-        <p>The school’s emblem is a bold letter C divided into five segments, each containing a cut-paper figure: a bird, a branching plant, a winding river, a creature and an open book. Two versions hang beside the main entrance, below the name carved in 1913.<i class="endmark"></i></p>
-      </div>
+
+    <div class="key" id="emblem">
+      <div class="key__emblem"><img class="fig" src="assets/figures/emblem.png" alt="" width="1044" height="1100" id="emblemSpin"></div>
+      <ol class="key__list" data-stagger>
+        <li data-reveal tabindex="0" style="--k:#7a99ba"><b class="key__n">1</b><img class="fig" src="assets/figures/bird.png" alt="" width="640" height="404" loading="lazy"><div><h3>Bird <span>Pollinator garden</span></h3><p>An S-shaped garden of native plants, funded in 2017 by the King Conservation District and the City of Seattle, was planned to attract bees, butterflies and hummingbirds and to give students a place for outdoor science.</p></div></li>
+        <li data-reveal tabindex="0" style="--k:#c9a063;--kt:#0f1719;--ff:brightness(0)"><b class="key__n">2</b><img class="fig" src="assets/figures/branch.png" alt="" width="634" height="640" loading="lazy"><div><h3>Branch <span>STEAM and the maker space</span></h3><p>Students learn the engineering design process (ask, imagine, plan, create, improve) and measure and build with paper, cardboard and wood.</p></div></li>
+        <li data-reveal tabindex="0" style="--k:#356870"><b class="key__n">3</b><img class="fig" src="assets/figures/river.png" alt="" width="444" height="640" loading="lazy"><div><h3>River <span>The Green Team</span></h3><p>In the school’s environmental stewardship program, older students sort food waste at breakfast and lunch, and every classroom recycles. Duwamish Opportunity Fund grants helped renew the front entry.</p></div></li>
+        <li data-reveal tabindex="0" style="--k:#234955"><b class="key__n">4</b><img class="fig" src="assets/figures/book.png" alt="" width="640" height="598" loading="lazy"><div><h3>Book <span>A bilingual library</span></h3><p>A growing collection of authentic Spanish-language books and works in translation supports reading in both languages of the dual-language program.</p></div></li>
+        <li data-reveal tabindex="0" style="--k:#c17f65"><b class="key__n">5</b><img class="fig" src="assets/figures/creature.png" alt="" width="515" height="640" loading="lazy"><div><h3>Creature <span>Music and art</span></h3><p>Students sing, dance and play xylophones, djembes, tubanos, bongos and ukuleles. Art lessons study artists from many cultures; one mosaic project took a reclining puma as its guide.</p></div></li>
+      </ol>
+    </div>
+
+    <blockquote class="pledge" id="pledge" data-reveal>
+      <p>“Each day at Concord I will learn by doing my best, by working with others, and by being safe, fair, and kind.”</p>
+      <footer><b>The school pledge.</b> <b>Pairings of figures and programs are an editorial reading, not an official key. Sources: Concord International School; City of Seattle, 2018.</b></footer>
+    </blockquote>
+
+    <div class="statrow statrow--in" data-stagger>
+      <p data-reveal><b data-count="365">365</b><span>Students, K to 5, 2018</span></p>
+      <p data-reveal><b><span data-count="60">60</span>%</b><span>Spanish speakers, 2018</span></p>
+      <p data-reveal><b data-count="2009" data-from="1914">2009</b><span>Dual-language immersion begins</span></p>
+      <p data-reveal><b data-count="7">7</b><span>Instruments in music class</span></p>
     </div>
   </div>
-</section>
-
-<section class="plane cream five" data-theme="light" data-title="The five figures">
-  <div class="grid"><h3 class="five__h" data-reveal>The five figures</h3></div>
-  <ul class="five__row" data-stagger>
-    <li data-reveal tabindex="0" style="--k:#7a99ba"><i class="fig fig--bird"></i><b>Bird</b></li>
-    <li data-reveal tabindex="0" style="--k:#c9a063"><i class="fig fig--branch"></i><b>Branch</b></li>
-    <li data-reveal tabindex="0" style="--k:#356870"><i class="fig fig--river"></i><b>River</b></li>
-    <li data-reveal tabindex="0" style="--k:#c17f65"><i class="fig fig--creature"></i><b>Creature</b></li>
-    <li data-reveal tabindex="0" style="--k:#234955"><i class="fig fig--book"></i><b>Book</b></li>
-  </ul>
 </section>
 
 <!-- ============ CHRONOLOGY ============ -->
@@ -617,23 +632,23 @@
   <div class="periods" id="periods">
     <article class="period" style="--c:#7a99ba" data-reveal>
       <header><span>1889 to 1913</span><h3>Below the hill</h3></header>
-      <div class="period__img"><img src="assets/img/postcard.jpg" alt="" loading="lazy"></div>
+      <div class="period__img"><img src="assets/img/south-park-school-photo.jpg" alt="" loading="lazy"></div>
       <dl>
         <div><dt>1889</dt><dd>South Park is platted as a town on Duwamish River farmland.</dd></div>
         <div><dt>1902</dt><dd>South Park School, an eight-room wooden building, is open by this date.</dd></div>
         <div><dt>1905</dt><dd>South Park incorporates as a city.</dd></div>
         <div><dt>1907</dt><dd>Voters approve annexation to Seattle, 186 to 36.</dd></div>
         <div><dt>1909</dt><dd>The school board buys a site on Concord Street.</dd></div>
-        <div><dt>1913</dt><dd>Concord School is named on 24 February. Built for $80,460 to a design by Edgar Blair.</dd></div>
+        <div><dt>1913</dt><dd>Concord School is named on February 24. Built for $80,460 to a design by Edgar Blair.</dd></div>
       </dl>
     </article>
     <article class="period" style="--c:#356870" data-reveal>
       <header><span>1914 to 1945</span><h3>The hill school</h3></header>
       <div class="period__img"><img src="assets/img/class-1933.jpg" alt="" loading="lazy"></div>
       <dl>
-        <div><dt>1914</dt><dd>On 25 January, 200 to 300 pupils move up the hill to the new school.</dd></div>
+        <div><dt>1914</dt><dd>On January 25, 200 to 300 students move up the hill to the new school.</dd></div>
         <div><dt>1928</dt><dd>Concord becomes a K-6 school; the site grows to 1.93 acres.</dd></div>
-        <div><dt>1932</dt><dd>The South Park annex closes. All pupils attend Concord.</dd></div>
+        <div><dt>1932</dt><dd>The South Park annex closes. All students attend Concord.</dd></div>
         <div><dt>1938</dt><dd>The old school is demolished. A sixth-grade class decorates a blackboard.</dd></div>
         <div><dt>1942</dt><dd>Japanese American families are removed under Executive Order 9066.</dd></div>
         <div><dt>1945</dt><dd>The site is expanded to 3.44 acres.</dd></div>
@@ -643,7 +658,7 @@
       <header><span>1946 to 1995</span><h3>Growth and change</h3></header>
       <div class="period__img"><img src="assets/img/aerial-1965.jpg" alt="" loading="lazy"></div>
       <dl>
-        <div><dt>1959</dt><dd>Enrolment peaks at 516 pupils in 1958-59.</dd></div>
+        <div><dt>1959</dt><dd>Enrollment peaks at 516 students in 1958-59.</dd></div>
         <div><dt>1960</dt><dd>Six portable classrooms stand on the grounds.</dd></div>
         <div><dt>1971</dt><dd>A gymnasium and multipurpose room are added.</dd></div>
         <div><dt>1974</dt><dd>A mural fills the end wall of the lunchroom.</dd></div>
@@ -655,12 +670,12 @@
       <header><span>1996 to today</span><h3>Two languages</h3></header>
       <div class="period__img"><img src="assets/img/class-1996.jpg" alt="" loading="lazy"></div>
       <dl>
-        <div><dt>1996</dt><dd>Concord becomes an ESL and bilingual centre.</dd></div>
+        <div><dt>1996</dt><dd>Concord becomes an ESL and bilingual center.</dd></div>
         <div><dt>1998</dt><dd>The 1913 exterior and entrance stair are designated a city landmark.</dd></div>
         <div><dt>2000</dt><dd>The renovated school reopens in September on a 4.21-acre site.</dd></div>
         <div><dt>2009</dt><dd>Spanish-English dual-language immersion begins.</dd></div>
-        <div><dt>2014</dt><dd>Enrolment reaches 412. A new South Park Bridge opens.</dd></div>
-        <div><dt>2022</dt><dd>329 pupils in kindergarten to fifth grade.</dd></div>
+        <div><dt>2014</dt><dd>Enrollment reaches 412. A new South Park Bridge opens.</dd></div>
+        <div><dt>2022</dt><dd>329 students in kindergarten to fifth grade.</dd></div>
       </dl>
     </article>
   </div>
@@ -668,7 +683,7 @@
 
 <!-- ============ COLOPHON ============ -->
 <footer class="plane dark colophon" id="sources" data-theme="dark" data-title="Sources">
-  <i class="fig fig--emblem colophon__emblem" id="colophonEmblem" style="--fc:#fff"></i>
+  <img class="fig colophon__emblem" src="assets/figures/emblem-white.png" alt="" width="1044" height="1100" id="colophonEmblem" loading="lazy">
   <hr class="rule rule--gold" data-reveal="rule">
   <div class="grid colophon__grid">
     <div data-reveal>

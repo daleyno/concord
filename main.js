@@ -7,107 +7,87 @@
   const root = document.documentElement;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const small = matchMedia('(max-width: 900px)');
-  const SVG = 'http://www.w3.org/2000/svg';
-  const person = i => `<svg viewBox="0 0 20 44" aria-hidden="true"><use href="#p-${i % 2 ? 'b' : 'a'}"/></svg>`;
-
-  /* ---------- build generated graphics ---------- */
-  // pictogram rows: one figure per `unit` pupils, last one partly filled
-  $$('.picto').forEach(el => {
-    const n = +el.dataset.n / +el.dataset.unit, full = Math.floor(n), rest = n - full;
-    let h = '';
-    for (let i = 0; i < full; i++) h += `<span style="--i:${i}">${person(i)}</span>`;
-    if (rest > .02) h += `<span style="--i:${full}"><span class="ghost">${person(full)}</span><span class="part" style="clip-path:inset(0 ${(1 - rest) * 100}% 0 0)">${person(full)}</span></span>`;
-    el.innerHTML = h;
-    el.setAttribute('role', 'img');
-    el.setAttribute('aria-label', `${el.dataset.n} pupils`);
-  });
-
-  // 10 x 10 waffles, filled from the bottom row up
-  $$('.waffle').forEach(el => {
-    const pct = +el.dataset.pct;
-    let h = '';
-    for (let i = 0; i < 100; i++) {
-      const row = Math.floor(i / 10), col = i % 10, order = (9 - row) * 10 + col;
-      h += `<span class="${order < pct ? 'fill' : ''}" style="--o:${order}">${person(i + row)}</span>`;
-    }
-    el.innerHTML = h;
-    el.setAttribute('role', 'img');
-    el.setAttribute('aria-label', `${pct} per cent`);
-  });
-
-  // Blair's 32 schools
-  const blair = $('#blairGrid');
-  if (blair) blair.innerHTML = Array.from({ length: 32 }, (_, i) => `<svg viewBox="0 0 44 36" style="--i:${i}" aria-hidden="true"><use href="#bldg${i < 3 ? '-w' : ''}"/></svg>`).join('');
-
-  // grades taught
-  const grades = $('#grades');
-  if (grades) {
-    const cols = ['K', 1, 2, 3, 4, 5, 6, 7, 8];
-    const rows = [['1914', 'Grades 1 to 8', 1, 8], ['1928', 'K to 6', 0, 6], ['Today', 'K to 5', 0, 5]];
-    let h = '<span></span><span class="l"></span>' + cols.map(c => `<span class="h">${c}</span>`).join('');
-    rows.forEach(([y, l, a, b]) => {
-      h += `<span class="y">${y}</span><span class="l">${l}</span>`;
-      cols.forEach((_, i) => { h += `<span class="c">${i >= a && i <= b ? person(i) : '<i></i>'}</span>`; });
-    });
-    grades.innerHTML = h;
-  }
-
-  // the 1938 class: 6 artists, 20 classmates
-  const people = $('#boardPeople');
-  if (people) people.innerHTML = Array.from({ length: 26 }, (_, i) => person(i).replace('<svg', `<svg class="${i < 6 ? 'g' : ''}"`)).join('');
-
-  // the school block, 8 x 2 lots
-  const blockSvg = $('#blockSvg');
-  const OWN = {
-    1928: [2, 3, 4, 5, 10, 11, 12],
-    1945: [0, 1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14],
-    2000: Array.from({ length: 16 }, (_, i) => i)
-  };
-  const BLOCK = { 1928: [1.93, 46], 1945: [3.44, 82], 2000: [4.21, 100] };
-  if (blockSvg) {
-    const X = 20, Y = 26, W = 35, H = 72;
-    let h = `<text x="160" y="14" text-anchor="middle">S CONCORD ST</text>
-      <text transform="translate(10 ${Y + H}) rotate(-90)" text-anchor="middle">7TH AVE S</text>
-      <text transform="translate(314 ${Y + H}) rotate(-90)" text-anchor="middle">8TH AVE S</text>`;
-    for (let i = 0; i < 16; i++) {
-      const c = i % 8, r = Math.floor(i / 8), x = X + c * W, y = Y + r * H;
-      h += `<rect class="lot" data-i="${i}" style="--i:${c + r * 2}" x="${x}" y="${y}" width="${W + .4}" height="${H + .4}"/>
-        <use class="hs" style="--i:${c + r * 2}" href="#house" x="${x + 9}" y="${y + 22}" width="17" height="26"/>`;
-    }
-    h += `<rect class="b1913" x="${X + 3 * W + 8}" y="${Y + 8}" width="54" height="54"/>
-      <rect class="b2000" x="${X + W + 12}" y="${Y + 14}" width="50" height="42"/>
-      <rect class="b2000" x="${X + 5 * W + 4}" y="${Y + 14}" width="46" height="42"/>`;
-    blockSvg.innerHTML = h;
-  }
 
   /* ---------- number tweening ---------- */
-  function tween(el, to, { from = 0, decimals = 0, dur = 1400 } = {}) {
-    if (reduce) { el.textContent = to.toFixed(decimals); return; }
+  function tween(el, to, { from = 0, decimals = 0, dur = 1400, sep = false } = {}) {
+    const fmt = v => (sep ? Math.round(v).toLocaleString('en-US') : v.toFixed(decimals));
+    if (reduce) { el.textContent = fmt(to); return; }
     const t0 = performance.now();
     (function step(t) {
       const k = clamp((t - t0) / dur), e = 1 - Math.pow(1 - k, 4);
-      el.textContent = (from + (to - from) * e).toFixed(decimals);
+      el.textContent = fmt(from + (to - from) * e);
       if (k < 1) requestAnimationFrame(step);
     })(t0);
   }
 
-  let blockYear = 1928;
-  function setBlock(year, animate = true) {
-    const prev = BLOCK[blockYear];
-    blockYear = year;
-    blockSvg.dataset.year = year;
-    $$('.lot', blockSvg).forEach(l => l.classList.toggle('own', OWN[year].includes(+l.dataset.i)));
-    $$('.seg button').forEach(b => b.setAttribute('aria-selected', String(+b.dataset.y === year)));
-    const [acres, pct] = BLOCK[year];
-    $('#blockBar').style.transform = `scaleX(${pct / 100})`;
-    if (animate) {
-      tween($('#blockAcres'), acres, { from: prev[0], decimals: 2, dur: 800 });
-      tween($('#blockPct'), pct, { from: prev[1], dur: 800 });
-    } else { $('#blockAcres').textContent = acres.toFixed(2); $('#blockPct').textContent = pct; }
+  /* ---------- students on the roll: the enrollment chart ---------- */
+  const rollSvg = $('#rollSvg');
+  if (rollSvg) {
+    const X = y => 70 + (y - 1905) / 122 * 780, Y = n => 470 - n / 560 * 430, f = v => v.toFixed(1);
+    // n: recorded enrollment; num/thumb: where the big figure and the round photograph sit
+    const pts = [
+      { y: 1914, n: 240, label: '1914 THE FIRST YEAR', img: 'roll-1914', num: [28, 250, 'start'], thumb: [68, 168, 34], pd: .35 },
+      { y: 1958.5, n: 516, label: '1958-59 THE PEAK', img: 'roll-1958', num: [436, 100, 'start'], lab: [436, 38], thumb: [322, 56, 36], pd: 1.5, peak: true },
+      { y: 2014, n: 412, label: '2014 IMMERSION ERA', img: 'roll-2014', num: [684, 214, 'start'], thumb: [742, 84, 32], pd: 2.6 },
+      { y: 2022, n: 329, label: '2022 LATEST COUNT', img: 'roll-2022', num: [806, 300, 'end'], thumb: [790, 372, 32], pd: 2.9 }
+    ];
+    const events = [[1932, '1932 ANNEX CLOSES', 508], [1960, '1960 SIX PORTABLES', 524], [1971, '1971 GYM ADDED', 508], [2009, '2009 IMMERSION', 524]];
+    let h = '';
+    for (let n = 100; n <= 500; n += 100) h += `<line class="rl-grid" x1="70" x2="850" y1="${f(Y(n))}" y2="${f(Y(n))}"/><text x="858" y="${f(Y(n) + 3)}">${n}</text>`;
+    h += `<image class="rl-bldg" href="assets/img/building-1914.png" x="36" y="279.3" width="360" height="194.7"/>`;
+    h += `<rect class="rl-band" x="${f(X(1999.5) - 3)}" y="52" width="6" height="418"/><text transform="translate(${f(X(1999.5) - 8)} 262) rotate(-90)" text-anchor="middle">1999-2000: AT E. C. HUGHES</text>`;
+    h += `<line class="rl-axis" x1="60" x2="850" y1="470" y2="470"/>`;
+    for (let y = 1910; y <= 2020; y += 10) h += `<line class="rl-axis" x1="${f(X(y))}" x2="${f(X(y))}" y1="470" y2="476"/><text x="${f(X(y))}" y="489" text-anchor="middle">${y}</text>`;
+    events.forEach(([y, t, yy]) => { h += `<line class="rl-axis" x1="${f(X(y))}" x2="${f(X(y))}" y1="494" y2="${yy}"/><text x="${f(X(y) + 4)}" y="${yy}">${t}</text>`; });
+    h += '<g class="rl-port">' + [0, 1, 2, 3, 4, 5].map(k => `<rect x="${f(X(1960) - 20 + (k % 3) * 14)}" y="${448 + Math.floor(k / 3) * 10}" width="12" height="8"/>`).join('') + '</g>';
+    h += `<path class="rl-line" pathLength="1" d="M${pts.map(p => `${f(X(p.y))} ${f(Y(p.n))}`).join('L')}"/>`;
+    pts.forEach(p => {
+      const x = f(X(p.y)), y = f(Y(p.n)), [nx, ny, anchor] = p.num, [lx, ly] = p.lab || [nx, ny + 15], [tx, ty, r] = p.thumb;
+      h += `<g class="pt${p.peak ? ' pt--peak' : ''}" tabindex="0" style="--pd:${p.pd}s" role="img" aria-label="${p.label.toLowerCase()}: ${p.n} students">
+        <line class="rl-drop" x1="${x}" x2="${x}" y1="${y}" y2="470"/>
+        <g class="thumb"><image href="assets/img/${p.img}.png" x="${tx - r}" y="${ty - r}" width="${2 * r}" height="${2 * r}"/><circle class="ring" cx="${tx}" cy="${ty}" r="${r}"/></g>
+        <text class="num${p.peak ? ' num--peak' : ''}" x="${nx}" y="${ny}" text-anchor="${anchor}" data-count="${p.n}" data-delay="${p.pd * 1000}">${p.n}</text>
+        <text x="${lx}" y="${ly}" text-anchor="${anchor}">${p.label}</text>
+        <circle class="dot" cx="${x}" cy="${y}" r="6.5"/>
+      </g>`;
+    });
+    rollSvg.innerHTML = h;
   }
-  let blockTouched = false;
-  if (blockSvg) {
-    setBlock(1928, false);
+
+  /* ---------- the river moved: before / after slider ---------- */
+  const compare = $('#compare');
+  let compareTouched = false;
+  const setCompare = v => compare.style.setProperty('--pos', `${v}%`);
+  if (compare) {
+    const range = $('input', compare);
+    range.addEventListener('input', () => { compareTouched = true; setCompare(range.value); });
+  }
+  function hintCompare() {
+    // one slow sweep so it is obvious the map can be dragged
+    const range = $('input', compare), keys = [50, 26, 66, 50], t0 = performance.now(), dur = 2400;
+    (function step(t) {
+      if (compareTouched) return;
+      const k = clamp((t - t0) / dur) * (keys.length - 1), i = Math.min(keys.length - 2, Math.floor(k));
+      const v = keys[i] + (keys[i + 1] - keys[i]) * ease(k - i);
+      range.value = v; setCompare(v);
+      if (k < keys.length - 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  /* ---------- buying the block: three squares to scale ---------- */
+  const squares = $('#squares');
+  const ACRES = { 1928: 1.93, 1945: 3.44, 2000: 4.21 };
+  let blockYear = 1928, blockTouched = false;
+  function setBlock(year, animate = true) {
+    const prev = ACRES[blockYear];
+    blockYear = year;
+    squares.dataset.year = year;
+    $$('.seg button').forEach(b => b.setAttribute('aria-selected', String(+b.dataset.y === year)));
+    if (animate) tween($('#blockAcres'), ACRES[year], { from: prev, decimals: 2, dur: 800 });
+    else $('#blockAcres').textContent = ACRES[year].toFixed(2);
+  }
+  if (squares) {
+    setBlock(reduce ? 2000 : 1928, false);
     $$('.seg button').forEach(b => b.addEventListener('click', () => { blockTouched = true; setBlock(+b.dataset.y); }));
   }
 
@@ -118,17 +98,20 @@
     el.innerHTML = text.split(/\s+/).map((w, i) => `<span class="w" aria-hidden="true"><span style="--i:${i}">${w}</span></span>`).join(' ');
   });
   $$('[data-stagger]').forEach(g => [...g.children].forEach((c, i) => c.style.setProperty('--d', `${i * 0.09}s`)));
-  $$('.tile').forEach((t, i) => t.style.setProperty('--i', i));
+  $$('.menu__list > li').forEach((li, i) => li.style.setProperty('--i', i));
 
   const onReveal = el => {
     $$('[data-count]', el).concat(el.matches('[data-count]') ? [el] : []).forEach(n => {
       if (n.dataset.done) return; n.dataset.done = 1;
-      tween(n, +n.dataset.count, { from: +(n.dataset.from || 0), decimals: +(n.dataset.decimals || 0) });
+      const run = () => tween(n, +n.dataset.count, { from: +(n.dataset.from || 0), decimals: +(n.dataset.decimals || 0), sep: !!n.dataset.sep });
+      n.dataset.delay && !reduce ? setTimeout(run, +n.dataset.delay) : run();
     });
-    if (el.id === 'block' && !reduce) {
+    if (reduce) return;
+    if (el.id === 'squares') {
       setTimeout(() => !blockTouched && setBlock(1945), 1300);
       setTimeout(() => !blockTouched && setBlock(2000), 2900);
     }
+    if (compare && el.contains(compare)) setTimeout(hintCompare, 500);
   };
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(es => es.forEach(e => {
@@ -170,14 +153,30 @@
   });
   if (reduce) { video.removeAttribute('autoplay'); video.pause(); userPaused = true; pauseBtn.setAttribute('aria-pressed', 'true'); pauseBtn.setAttribute('aria-label', 'Play animation'); }
 
-  /* ---------- façade + retention hotspots ---------- */
-  const facade = $('#facade'), fItems = $$('#facadeList li'), fDots = $$('#facadeArt .dot'), fN = $('#facadeN');
+  /* ---------- reading the facade + retention hotspots ---------- */
+  // a frame of full color travels to the feature being read: [centre x, centre y, half width, half height] as fractions of the drawing
+  const LENS = [
+    [.52, .25, .2, .1],     // 1 hip roof
+    [.15, .29, .15, .11],   // 2 cornice
+    [.3, .47, .16, .14],    // 3 banding
+    [.106, .86, .07, .11],  // 4 side door
+    [.54, .13, .21, .13],   // 5 three cowls
+    [.86, .57, .11, .15],   // 6 sash windows
+    [.7, .74, .12, .2],     // 7 entrance
+    [.44, .9, .4, .075]     // 8 raised base
+  ];
+  const facade = $('#facade'), fItems = $$('#facadeList li'), fImg = $('#facadeImg'), lens = $('#lens'), lensTag = $('#lensTag'), fN = $('#facadeN');
   let fIdx = -1;
   function setFacade(i) {
     if (i === fIdx) return; fIdx = i;
     fItems.forEach(li => li.classList.toggle('on', +li.dataset.i === i));
-    fDots.forEach(d => d.classList.toggle('on', +d.dataset.i === i));
+    ['--cx', '--cy', '--rx', '--ry'].forEach((p, k) => fImg.style.setProperty(p, LENS[i][k]));
     fN.textContent = i + 1;
+    lensTag.innerHTML = `<b>0${i + 1}</b><i>${$('strong', fItems[i]).textContent}</i>`;
+    lens.classList.toggle('lens--r', LENS[i][0] > .6); // keep the tag inside the drawing on the right-hand features
+    lensTag.classList.remove('pop'); lens.classList.remove('pulse');
+    void lens.offsetWidth; // restart the two keyframe animations
+    lensTag.classList.add('pop'); lens.classList.add('pulse');
   }
   function gotoFacade(i) {
     if (small.matches) return setFacade(i);
@@ -185,7 +184,6 @@
     scrollTo({ top: facade.offsetTop + total * ((i + .5) / 8), behavior: reduce ? 'auto' : 'smooth' });
   }
   fItems.forEach(li => $('button', li).addEventListener('click', () => gotoFacade(+li.dataset.i)));
-  fDots.forEach(d => d.addEventListener('click', () => gotoFacade(+d.dataset.i)));
   setFacade(0);
 
   const keep = $('#keep');
@@ -210,19 +208,26 @@
     update();
   }
   menuBtn.addEventListener('click', () => toggleMenu());
-  $$('.tile', menu).forEach(t => t.addEventListener('click', () => toggleMenu(false)));
+  $$('a', menu).forEach(a => a.addEventListener('click', () => toggleMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
 
   /* ---------- scroll-driven updates ---------- */
-  const rail = $('.rail'), railTitle = $('#railTitle'), railTitleWrap = $('.rail__title');
+  const rail = $('.rail'), railTitle = $('#railTitle'), railTitleWrap = $('.rail__title'), railNext = $('#railNext');
   const sections = $$('[data-title]');
   const pins = $$('.pin');
   const reel = $('#portraits'), track = $('#reelTrack');
-  const boardCover = $('#boardCover'), board = $('#board');
+  const board = $('#board'), boardStage = board && board.parentElement;
+  if (boardStage && reduce) boardStage.style.setProperty('--p', 1);
   const pan = $('#pan'), panImg = $('#panImg');
   const parallax = $$('[data-parallax]');
   const spinners = [$('#emblemSpin'), $('#colophonEmblem')].filter(Boolean);
-  let currentTitle = '';
+  let currentTitle = '', curIdx = 0;
+  // the arrow at the foot of the rail steps to the next section; on the last one it turns and goes back to the cover
+  railNext.addEventListener('click', () => {
+    if (root.classList.contains('menu-open')) toggleMenu(false);
+    const next = sections[curIdx + 1];
+    scrollTo({ top: next ? Math.ceil(next.getBoundingClientRect().top + scrollY) : 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
 
   function sizeReel() {
     if (small.matches) { reel.style.height = ''; return; }
@@ -242,6 +247,12 @@
     // which section is under the middle of the viewport
     let cur = sections[0];
     for (const s of sections) { if (s.getBoundingClientRect().top <= vh * .45) cur = s; else break; }
+    curIdx = sections.indexOf(cur);
+    const atEnd = curIdx === sections.length - 1;
+    if (railNext.classList.contains('up') !== atEnd) {
+      railNext.classList.toggle('up', atEnd);
+      railNext.setAttribute('aria-label', atEnd ? 'Back to the cover' : 'Next section');
+    }
     const menuOpen = root.classList.contains('menu-open');
     rail.dataset.theme = menuOpen ? 'dark' : cur.dataset.theme;
     const title = menuOpen ? 'Contents' : cur.dataset.title;
@@ -271,10 +282,10 @@
       else if (!off && video.paused) { const p = video.play(); if (p) p.catch(() => {}); }
     }
 
-    // blackboard: the later chalkboard lifts away as the board crosses the middle of the screen
+    // blackboard: the later chalkboard lifts away, and the 52-year bar fills, as the board crosses the middle of the screen
     if (board) {
       const r = board.getBoundingClientRect();
-      boardCover.style.setProperty('--p', ease(clamp((vh * .82 - r.top) / (vh * .5))).toFixed(4));
+      boardStage.style.setProperty('--p', ease(clamp((vh * .82 - r.top) / (vh * .5))).toFixed(4));
     }
     // elevation drawing pans as it travels up the screen
     if (pan) {
