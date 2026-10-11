@@ -186,12 +186,75 @@
   </figure>
 </section>
 
+<!-- the move: an abstract map set into the page, then the climb played full screen by scrolling -->
+<section class="plane light moveintro" id="move" data-theme="light" data-title="The move, 1914">
+  <div class="grid moveintro__grid">
+    <div class="moveintro__copy">
+      <p class="tag" data-reveal>January 25, 1914</p>
+      <p class="moveintro__line" data-reveal="words">Between 200 and 300 students cleared their desks at South Park School</p>
+    </div>
+    <figure class="moveintro__map" data-reveal>
+      <svg class="mapg" id="mapG" viewBox="0 0 960 600" role="img" aria-label="Abstract map: South Park School near the Duwamish River and Concord on the ridge, joined by a dotted route.">
+        <defs>
+          <pattern id="mg-grid" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)"><path d="M0 .5H24M.5 0V24" fill="none" stroke="#234955" stroke-opacity=".2"/></pattern>
+          <pattern id="mg-grid2" width="16" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(24)"><path d="M0 .5H16M.5 0V34" fill="none" stroke="#234955" stroke-opacity=".26"/></pattern>
+          <pattern id="mg-dots" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><circle cx="2" cy="2" r="1.15" fill="#234955" fill-opacity=".3"/></pattern>
+          <clipPath id="mg-clip"><rect width="960" height="600"/></clipPath>
+          <mask id="mg-reveal" maskUnits="userSpaceOnUse" x="0" y="0" width="960" height="600"><path id="mgReveal" d="M560 212C500 252 432 248 392 298S322 332 288 368" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="0"/></mask>
+        </defs>
+        <g clip-path="url(#mg-clip)"><g id="mgZoom">
+          <rect width="960" height="600" fill="#d6e0dc"/>
+          <rect width="960" height="600" fill="url(#mg-grid)"/>
+          <path d="M0 0H330L214 600H0Z" fill="url(#mg-dots)"/>
+          <path d="M700 0H960V600H664C720 500 610 420 690 300S640 120 700 0Z" fill="url(#mg-grid2)"/>
+          <g class="mg-blocks" fill="#f3efe6" fill-opacity=".85"><rect x="470" y="96" width="34" height="16" transform="rotate(-18 470 96)"/><rect x="512" y="118" width="22" height="22" transform="rotate(-18 512 118)"/><rect x="452" y="150" width="46" height="14" transform="rotate(-18 452 150)"/><rect x="498" y="300" width="30" height="18" transform="rotate(-18 498 300)"/><rect x="530" y="330" width="20" height="26" transform="rotate(-18 530 330)"/><rect x="446" y="372" width="40" height="14" transform="rotate(-18 446 372)"/><rect x="486" y="420" width="24" height="20" transform="rotate(-18 486 420)"/><rect x="742" y="120" width="52" height="18" transform="rotate(24 742 120)"/><rect x="786" y="190" width="30" height="30" transform="rotate(24 786 190)"/><rect x="760" y="300" width="60" height="16" transform="rotate(24 760 300)"/><rect x="800" y="380" width="26" height="26" transform="rotate(24 800 380)"/><rect x="734" y="452" width="44" height="18" transform="rotate(24 734 452)"/><rect x="120" y="110" width="22" height="14" transform="rotate(-18 120 110)"/><rect x="160" y="190" width="18" height="18" transform="rotate(-18 160 190)"/><rect x="96" y="300" width="26" height="14" transform="rotate(-18 96 300)"/><rect x="150" y="470" width="22" height="16" transform="rotate(-18 150 470)"/><rect x="350" y="480" width="30" height="16" transform="rotate(-18 350 480)"/><rect x="398" y="130" width="20" height="14" transform="rotate(-18 398 130)"/></g>
+          <path class="mg-road" d="M590 -10L548 250M548 250L690 232M690 232L960 180M0 520L420 438L548 250"/>
+          <path class="mg-river" d="M640 -40C610 110 730 180 676 300S560 470 650 640"/>
+          <path class="mg-flow" d="M640 -40C610 110 730 180 676 300S560 470 650 640"/>
+          <path class="mg-ghost" d="M586 -20C500 70 660 118 604 196S790 262 716 344S536 402 612 474S716 548 664 640"/>
+          <path class="mg-bridge" d="M634 239L714 229"/>
+          <g class="mg-contour"><path d="M232 372c0-52 44-86 92-78s70 46 60 90-52 72-94 64-58-34-58-76z"/><path d="M196 370c0-78 68-128 138-116s106 70 90 136-80 108-142 96-86-52-86-116z"/><path d="M156 366c0-106 96-172 190-156s144 96 122 186-110 146-194 130-118-72-118-160z"/></g>
+          <text class="mg-note" transform="translate(708 150) rotate(72)">Duwamish River</text>
+          <text class="mg-note mg-note--d" x="214" y="262">The ridge</text>
+          <path class="mg-route" d="M560 212C500 252 432 248 392 298S322 332 288 368" mask="url(#mg-reveal)"/>
+          <path id="mgRoute" d="M560 212C500 252 432 248 392 298S322 332 288 368" fill="none"/>
+          <g class="mg-pt mg-pt--a"><circle class="pulse" cx="560" cy="212" r="7"/><circle cx="560" cy="212" r="7"/><rect x="576" y="199" width="206" height="26"/><text x="587" y="217">South Park School</text></g>
+          <g class="mg-pt mg-pt--b" id="mgEnd"><circle class="pulse" cx="288" cy="368" r="7"/><circle cx="288" cy="368" r="7"/><rect x="172" y="355" width="100" height="26"/><text x="183" y="373">Concord</text></g>
+          <circle class="mg-walker" id="mgWalker" cx="288" cy="368" r="6"/>
+        </g></g>
+      </svg>
+      <figcaption class="cap"><b>South Park School to Concord.</b> An abstract map of the move: the old school at the foot of the hill, the new one on the ridge.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="plane dark pin move move--static" id="climb" data-theme="dark" data-title="Up the hill" style="--len:3.4">
+  <div class="pin__stick move__stick">
+    <video id="moveClimb" data-inview data-scrub muted playsinline preload="metadata" poster="assets/video/move-climb-poster.jpg" src="assets/video/move-climb.mp4" width="1280" height="720" aria-label="Black and white film: the view climbs a dirt track up a bare hill toward a three-story brick school."></video>
+    <div class="move__copy">
+      <p class="tag">January 25, 1914</p>
+      <p class="move__line">and carried their books and supplies up the hill.</p>
+      <p class="cap"><b>The climb.</b> An illustrative reconstruction, not archival footage.</p>
+    </div>
+    <div class="move__bar" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
 <!-- ============ 02 ============ -->
 <section class="plane light chapter" id="ch2" data-theme="light" data-title="02 · A model school">
-  <div class="grid chapter__head">
-    <p class="kicker" data-reveal><span class="badge">02</span> Chapter 2 <i>The building</i></p>
-    <h2 class="display" data-reveal="words">A model school</h2>
-    <p class="sub" data-reveal>Edgar Blair, district architect</p>
+  <div class="grid chapter__head chapter__head--film">
+    <div class="chapter__title">
+      <p class="kicker" data-reveal><span class="badge">02</span> Chapter 2 <i>The building</i></p>
+      <h2 class="display" data-reveal="words">A model school</h2>
+      <p class="sub" data-reveal>Edgar Blair, district architect</p>
+    </div>
+    <figure class="film" data-reveal>
+      <div class="film__frame">
+        <video id="buildingFilm" data-inview loop muted playsinline preload="metadata" poster="assets/video/building-poster.jpg" src="assets/video/building.mp4" width="1600" height="900" aria-label="Short film: a sketch of Concord School draws itself, with its roof, three roof ventilators, windows and entrance labeled, then gives way to photographs of the building today."></video>
+        <button class="vpause" aria-label="Pause film" aria-pressed="false"><i></i></button>
+      </div>
+      <figcaption class="cap"><b>The building.</b> Blair’s school drawn in outline, then as it stands today.</figcaption>
+    </figure>
   </div>
   <hr class="rule" data-reveal="rule">
 
@@ -308,6 +371,13 @@
     <div class="roll__scroll">
       <svg id="rollSvg" viewBox="0 0 900 540" role="img" aria-label="Line chart of recorded enrollment: 240 students in 1914, a peak of 516 in 1958-59, 412 in 2014 and 329 in 2022."></svg>
     </div>
+    <ul class="roll__key">
+      <li style="--k:var(--teal-d)"><img src="assets/img/roll-1914.png" alt="" width="260" height="260" loading="lazy"><p><b>240</b><span>1914 The first year</span></p></li>
+      <li style="--k:var(--terra)"><img src="assets/img/roll-1958.png" alt="" width="260" height="260" loading="lazy"><p><b>516</b><span>1958-59 The peak</span></p></li>
+      <li style="--k:var(--teal-d)"><img src="assets/img/roll-2014.png" alt="" width="260" height="260" loading="lazy"><p><b>412</b><span>2014 Immersion era</span></p></li>
+      <li style="--k:var(--teal-d)"><img src="assets/img/roll-2022.png" alt="" width="260" height="260" loading="lazy"><p><b>329</b><span>2022 Latest count</span></p></li>
+    </ul>
+    <p class="roll__events"><span><b>1932</b>Annex closes</span><span><b>1960</b>Six portables</span><span><b>1971</b>Gym added</span><span><b>1999-2000</b>At E. C. Hughes</span><span><b>2009</b>Immersion</span></p>
     <p class="note">Recorded enrollment for selected years. The line joins recorded figures only. Building: Concord School, c. 1914.</p>
   </div>
   <hr class="rule rule--soft" data-reveal="rule">
@@ -425,13 +495,13 @@
     <div class="reel__track" id="reelTrack">
       <div class="reel__intro">
         <p class="kicker kicker--gold">On the same stair</p>
-        <p class="reel__title">1933<br>1935<br>1936<br>1996<span>–97</span></p>
+        <p class="reel__title">1933<br>1935<br>1936<br>1997</p>
         <p class="reel__hint">Keep scrolling <i>→</i></p>
       </div>
       <figure class="reel__panel"><div class="ph"><img width="2000" height="1307" src="assets/img/class-1933.jpg" alt="Class portrait, January 1933: students in winter coats on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1933</b><span class="cap"><b>January 1933.</b> A winter class portrait, with coats and snow on the stair. Seattle Public Schools Archives.</span></figcaption></figure>
       <figure class="reel__panel"><div class="ph"><img width="2000" height="1264" src="assets/img/class-1935.jpg" alt="Class portrait, June 1935: boys seated on the bottom step, girls standing behind." loading="lazy"></div><figcaption><b class="reel__year">1935</b><span class="cap"><b>June 1935.</b> The boys seated on the bottom step, the girls standing behind. Seattle Public Schools Archives.</span></figcaption></figure>
       <figure class="reel__panel"><div class="ph"><img width="2000" height="1300" src="assets/img/class-1936.jpg" alt="Class portrait, June 1936, on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1936</b><span class="cap"><b>June 1936.</b> A class on the main stair between the concrete stair walls. Seattle Public Schools Archives.</span></figcaption></figure>
-      <figure class="reel__panel"><div class="ph"><img width="1872" height="1272" src="assets/img/class-1996.jpg" alt="Colour class portrait, 1996-97: a second-grade class and their teacher on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1996<small>–97</small></b><span class="cap"><b>1996-97.</b> Mrs. Maria Fletcher’s second grade on the main stair. Principal: Ms. Claudia Allan. Courtesy of a former student.</span></figcaption></figure>
+      <figure class="reel__panel"><div class="ph"><img width="1872" height="1272" src="assets/img/class-1996.jpg" alt="Colour class portrait, 1997: a second-grade class and their teacher on the main stair." loading="lazy"></div><figcaption><b class="reel__year">1997</b><span class="cap"><b>1997.</b> Mrs. Maria Fletcher’s second grade on the main stair. Principal: Ms. Claudia Allan. Courtesy of a former student.</span></figcaption></figure>
     </div>
   </div>
 </section>
