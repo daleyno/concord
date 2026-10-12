@@ -37,7 +37,7 @@
       <li><a class="menu__h" href="#ch1"><b>1</b>Below the hill</a>
         <ul><li><a href="#ch1">South Park, 1850s to 1914</a></li><li><a href="#ch1-move">The move of 1914</a></li></ul></li>
       <li><a class="menu__h" href="#ch2"><b>2</b>A model school</a>
-        <ul><li><a href="#ch2">Edgar Blair, architect</a></li><li><a href="#facade">Reading the facade</a></li><li><a href="#figures">A century on one hill</a></li></ul></li>
+        <ul><li><a href="#ch2">Edgar Blair, architect</a></li><li><a href="#model">Brick, proportion and light</a></li><li><a href="#figures">A century on one hill</a></li></ul></li>
       <li><a class="menu__h" href="#ch3"><b>3</b>On the front steps</a>
         <ul><li><a href="#portraits">Class portraits</a></li><li><a href="#color">The same stair, in color</a></li></ul></li>
       <li><a class="menu__h" href="#ch4"><b>4</b>The lunchroom and the blackboard</a>
@@ -65,7 +65,7 @@
         <li><a class="hero__toc-h" href="#ch1"><b>1</b>The hill</a>
           <ul><li><a href="#ch1">South Park School</a></li><li><a href="#ch1-move">The move of 1914</a></li><li><a href="#ch1">A town joins Seattle</a></li><li><a href="#ch1-move">The first recess</a></li></ul></li>
         <li><a class="hero__toc-h" href="#ch2"><b>2</b>The building</a>
-          <ul><li><a href="#ch2">Edgar Blair, architect</a></li><li><a href="#facade">Reading the facade</a></li><li><a href="#figures">Concord in figures</a></li><li><a href="#ch5">The 1999 drawings</a></li></ul></li>
+          <ul><li><a href="#ch2">Edgar Blair, architect</a></li><li><a href="#model">Reading the facade</a></li><li><a href="#figures">Concord in figures</a></li><li><a href="#ch5">The 1999 drawings</a></li></ul></li>
         <li><a class="hero__toc-h" href="#ch3"><b>3</b>The people</a>
           <ul><li><a href="#ch3">Class portraits</a></li><li><a href="#ch4">The lunchroom</a></li><li><a href="#blackboard">The 1938 blackboard</a></li><li><a href="#languages">Two languages</a></li></ul></li>
       </ol>
@@ -313,32 +313,54 @@
   </div>
 </section>
 
-<!-- ============ READING THE FACADE ============ -->
-<section class="plane cream pin facade" id="facade" data-theme="light" data-title="Reading the facade" style="--len:5">
-  <div class="pin__stick facade__stick">
-    <div class="facade__copy">
-      <p class="kicker"><span class="badge">02</span> The building</p>
-      <h2 class="display display--m" data-reveal="words">Reading the facade</h2>
-      <p class="sub sub--s" data-reveal>Eight features of Blair’s design, from the three cowls on the roof to the stone base.</p>
-      <ol class="facade__list" id="facadeList">
-        <li data-i="0"><button><b>1</b><span><strong>Hip roof</strong><em>Low and plain, leaving the walls to carry the design.</em></span></button></li>
-        <li data-i="1"><button><b>2</b><span><strong>Cornice</strong><em>Wooden, on a row of modillions.</em></span></button></li>
-        <li data-i="2"><button><b>3</b><span><strong>Banding</strong><em>Buff courses run across the red brick.</em></span></button></li>
-        <li data-i="3"><button><b>4</b><span><strong>Side door</strong><em>A service entrance in the raised base.</em></span></button></li>
-        <li data-i="4"><button><b>5</b><span><strong>Three cowls</strong><em>Roof ventilators, retained and refurbished in 1999.</em></span></button></li>
-        <li data-i="5"><button><b>6</b><span><strong>Sash windows</strong><em>Tall and grouped in threes and fours.</em></span></button></li>
-        <li data-i="6"><button><b>7</b><span><strong>Entrance</strong><em>Pale brick and cast stone; landmarked with its stair.</em></span></button></li>
-        <li data-i="7"><button><b>8</b><span><strong>Raised base</strong><em>A lighter ground floor set on a stone plinth.</em></span></button></li>
-      </ol>
-    </div>
-    <div class="facade__art" id="facadeArt">
-      <div class="facade__img" id="facadeImg" style="--cx:.52;--cy:.25;--rx:.2;--ry:.1">
-        <img class="facade__base" src="assets/img/facade-diagram.png" alt="Illustration of Concord School seen from the north-east corner." loading="lazy" width="1536" height="1024">
-        <img class="facade__color" src="assets/img/facade-diagram.png" alt="" aria-hidden="true" loading="lazy" width="1536" height="1024">
-        <div class="lens" id="lens" aria-hidden="true"><span class="lens__tag" id="lensTag"><b>01</b><i>Hip roof</i></span></div>
+<!-- brick, proportion and light: a model to turn and take apart -->
+<section class="plane dark model" id="model" data-theme="dark" data-title="Brick, proportion and light">
+  <div class="grid model__grid">
+    <div class="model__copy">
+      <p class="kicker kicker--gold" data-reveal>723 S Concord St</p>
+      <h2 class="display display--m" data-reveal="words">Brick, proportion and light</h2>
+      <p class="dek model__dek" data-reveal>Blair’s design asks little of ornament and a great deal of proportion. Turn the school in your hand, lift the roof from its walls, and see how each part of the facade meets the next.</p>
+      <div class="mfeat">
+        <p class="mfeat__h">Eight features of Blair’s design, from the three cowls on the roof to the stone base.</p>
+        <ol class="mfeat__list">
+          <li><button data-feature="0" aria-pressed="false"><b>1</b><span><strong>Hip roof</strong><em>Low and plain, leaving the walls to carry the design.</em></span></button></li>
+          <li><button data-feature="1" aria-pressed="false"><b>2</b><span><strong>Cornice</strong><em>Wooden, on a row of modillions.</em></span></button></li>
+          <li><button data-feature="2" aria-pressed="false"><b>3</b><span><strong>Banding</strong><em>Buff courses run across the red brick.</em></span></button></li>
+          <li><button data-feature="3" aria-pressed="false"><b>4</b><span><strong>Side door</strong><em>A service entrance in the raised base.</em></span></button></li>
+          <li><button data-feature="4" aria-pressed="false"><b>5</b><span><strong>Three cowls</strong><em>Roof ventilators, retained and refurbished in 1999.</em></span></button></li>
+          <li><button data-feature="5" aria-pressed="false"><b>6</b><span><strong>Sash windows</strong><em>Tall and grouped in threes and fours.</em></span></button></li>
+          <li><button data-feature="6" aria-pressed="false"><b>7</b><span><strong>Entrance</strong><em>Pale brick and cast stone; landmarked with its stair.</em></span></button></li>
+          <li><button data-feature="7" aria-pressed="false"><b>8</b><span><strong>Raised base</strong><em>A lighter ground floor set on a stone plinth.</em></span></button></li>
+        </ol>
       </div>
-      <p class="facade__count" aria-hidden="true"><b id="facadeN">1</b><span>/ 8</span></p>
+      <div class="model__controls">
+        <div class="mctl">
+          <span class="mctl__l" id="mctlView">Elevation</span>
+          <div class="mseg" role="group" aria-labelledby="mctlView">
+            <button data-view="N" aria-pressed="false" aria-label="North elevation">N</button><button data-view="E" aria-pressed="false" aria-label="East elevation">E</button><button data-view="S" aria-pressed="false" aria-label="South elevation">S</button><button data-view="W" aria-pressed="false" aria-label="West elevation">W</button>
+          </div>
+        </div>
+        <div class="mctl">
+          <label class="mctl__l" for="modelApart">Take apart</label>
+          <input class="mrange" id="modelApart" type="range" min="0" max="100" value="0">
+        </div>
+      </div>
     </div>
+    <figure class="model__fig">
+      <div class="model__stage">
+        <canvas tabindex="0" role="img" aria-label="A model of Concord School that can be turned and taken apart. Use the arrow keys to turn it."></canvas>
+        <div class="model__labels" aria-hidden="true"></div>
+        <p class="model__read" aria-live="off"></p>
+        <p class="model__hint" aria-hidden="true">Drag to turn</p>
+        <div class="model__fallback">
+          <figure><img src="assets/model/north.jpg" alt="The north elevation, with the main entrance." width="768" height="480" loading="lazy"><figcaption>N — North</figcaption></figure>
+          <figure><img src="assets/model/south.jpg" alt="The south elevation, with the boiler chimney and the low annex." width="768" height="480" loading="lazy"><figcaption>S — South</figcaption></figure>
+          <figure><img src="assets/model/west.jpg" alt="The west elevation." width="768" height="485" loading="lazy"><figcaption>W — West</figcaption></figure>
+          <figure><img src="assets/model/east.jpg" alt="The east elevation." width="768" height="485" loading="lazy"><figcaption>E — East</figcaption></figure>
+        </div>
+      </div>
+      <figcaption class="cap"><b>North, south, west and east.</b> A model assembled from four elevation views. Proportions are approximate; hatching marks where one part meets another.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -768,5 +790,6 @@
 
 </main>
 <script src="main.js"></script>
+<script src="model.js" defer></script>
 </body>
 </html>

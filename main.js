@@ -182,39 +182,7 @@
   });
   if (reduce) { video.removeAttribute('autoplay'); video.pause(); userPaused = true; pauseBtn.setAttribute('aria-pressed', 'true'); pauseBtn.setAttribute('aria-label', 'Play animation'); }
 
-  /* ---------- reading the facade + retention hotspots ---------- */
-  // a frame of full color travels to the feature being read: [centre x, centre y, half width, half height] as fractions of the drawing
-  const LENS = [
-    [.52, .25, .2, .1],     // 1 hip roof
-    [.15, .29, .15, .11],   // 2 cornice
-    [.3, .47, .16, .14],    // 3 banding
-    [.106, .86, .07, .11],  // 4 side door
-    [.54, .13, .21, .13],   // 5 three cowls
-    [.86, .57, .11, .15],   // 6 sash windows
-    [.7, .74, .12, .2],     // 7 entrance
-    [.44, .9, .4, .075]     // 8 raised base
-  ];
-  const facade = $('#facade'), fItems = $$('#facadeList li'), fImg = $('#facadeImg'), lens = $('#lens'), lensTag = $('#lensTag'), fN = $('#facadeN');
-  let fIdx = -1;
-  function setFacade(i) {
-    if (i === fIdx) return; fIdx = i;
-    fItems.forEach(li => li.classList.toggle('on', +li.dataset.i === i));
-    ['--cx', '--cy', '--rx', '--ry'].forEach((p, k) => fImg.style.setProperty(p, LENS[i][k]));
-    fN.textContent = i + 1;
-    lensTag.innerHTML = `<b>0${i + 1}</b><i>${$('strong', fItems[i]).textContent}</i>`;
-    lens.classList.toggle('lens--r', LENS[i][0] > .6); // keep the tag inside the drawing on the right-hand features
-    lensTag.classList.remove('pop'); lens.classList.remove('pulse');
-    void lens.offsetWidth; // restart the two keyframe animations
-    lensTag.classList.add('pop'); lens.classList.add('pulse');
-  }
-  function gotoFacade(i) {
-    if (small.matches) return setFacade(i);
-    const total = facade.offsetHeight - innerHeight;
-    scrollTo({ top: facade.offsetTop + total * ((i + .5) / 8), behavior: reduce ? 'auto' : 'smooth' });
-  }
-  fItems.forEach(li => $('button', li).addEventListener('click', () => gotoFacade(+li.dataset.i)));
-  setFacade(0);
-
+  /* ---------- retention hotspots ---------- */
   const keep = $('#keep');
   if (keep) {
     const notes = $$('.keep__notes li', keep), dots = $$('.dot', keep);
@@ -360,7 +328,6 @@
       const pr = mobile ? 0 : pinProgress(p);
       p.style.setProperty('--p', pr.toFixed(4));
       if (p === hero) stick.style.setProperty('--e', mobile ? 0 : ease(clamp(pr / .72)).toFixed(4));
-      else if (p === facade && !mobile) setFacade(Math.min(7, Math.floor(pr * 8)));
       else if (p === reel && !mobile) track.style.transform = `translate3d(${-pr * (+reel.dataset.extra || 0)}px,0,0)`;
       else if (p === move && !mobile) seekTo(climbV, clamp((pr - .04) / .88) * ((climbV.duration || 8) - .05));
     });
